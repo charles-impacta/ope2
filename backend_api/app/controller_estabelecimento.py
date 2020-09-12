@@ -14,3 +14,10 @@ class ControllerEstabelecimento():
 
     def buscar_estabelecimento(self, id):
         return Estabelecimento.query.filter_by(id=id).first()
+
+    def atualizar_estabelecimento(self, id, nome, cnpj):
+        estabelecimento = Estabelecimento.query.filter_by(id=id).first()
+        estabelecimento.nome = nome
+        estabelecimento.cnpj = cnpj
+        db.session.add(estabelecimento)
+        db.session.commit()

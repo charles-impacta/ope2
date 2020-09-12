@@ -38,7 +38,7 @@ class TestApp(unittest.TestCase):
     def test_busca_estabelecimento(self):
         # arrange
         json_data = {
-            'nome': 'nome teste',
+            'nome': 'estabelecimento teste',
             'cnpj': '12345678901234'
         }
         id_estabelecimento = self._cria_estabelecimento(json_data).json['id']
@@ -50,6 +50,28 @@ class TestApp(unittest.TestCase):
         assert response.json['id'] == id_estabelecimento
         assert response.json['nome'] == json_data['nome']
         assert response.json['cnpj'] == json_data['cnpj']
+
+    def test_atualiza_estabelecimento(self):
+        # arrange
+        json_data = {
+            'nome': 'estabelecimento teste',
+            'cnpj': '12345678901234'
+        }
+        id_estabelecimento = self._cria_estabelecimento(json_data).json['id']
+
+        novo_json_data = {
+            'nome': 'estabelecimento teste_',
+            'cnpj': '1234567890123_'
+        }
+
+        # act
+        self.client.put('/estabelecimentos/' + str(id_estabelecimento), json=novo_json_data)
+
+        # assert
+        response = self.client.get('/estabelecimentos/' + str(id_estabelecimento))
+        assert response.json['id'] == id_estabelecimento
+        assert response.json['nome'] == novo_json_data['nome']
+        assert response.json['cnpj'] == novo_json_data['cnpj']
 
     #
     # metodos de suporte

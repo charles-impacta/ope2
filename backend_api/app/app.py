@@ -43,3 +43,16 @@ def get_estabelecimentos(id_estabelecimento):
         nome = estabelecimento.nome,
         cnpj = estabelecimento.cnpj
     )
+
+
+@app.route('/estabelecimentos/<id_estabelecimento>', methods=['PUT'])
+def put_estabelecimentos(id_estabelecimento):
+    nome = request.json['nome']
+    cnpj = request.json['cnpj']
+    controller_estabelecimento.atualizar_estabelecimento(id_estabelecimento, nome, cnpj)
+    estabelecimento = controller_estabelecimento.buscar_estabelecimento(id_estabelecimento)
+    return jsonify (
+        id = estabelecimento.id,
+        nome = estabelecimento.nome,
+        cnpj = estabelecimento.cnpj
+    )
