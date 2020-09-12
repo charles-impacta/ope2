@@ -31,5 +31,15 @@ def post_estabelecimentos():
 def delete_estabelecimentos(id_estabelecimento):
     controller_estabelecimento.deletar_estabelecimento(id_estabelecimento)
     return jsonify(
-        mensagem='Estabelecimento deletado com sucesso.'
+        mensagem = 'Estabelecimento deletado com sucesso.'
+    )
+
+
+@app.route('/estabelecimentos/<id_estabelecimento>', methods=['GET'])
+def get_estabelecimentos(id_estabelecimento):
+    estabelecimento = controller_estabelecimento.buscar_estabelecimento(id_estabelecimento)
+    return jsonify (
+        id = estabelecimento.id,
+        nome = estabelecimento.nome,
+        cnpj = estabelecimento.cnpj
     )

@@ -11,3 +11,6 @@ class ControllerEstabelecimento():
         estabelecimento = Estabelecimento.query.filter_by(id=id).first()
         db.session.delete(estabelecimento)
         db.session.commit()
+
+    def buscar_estabelecimento(self, id):
+        return Estabelecimento.query.filter_by(id=id).first()
