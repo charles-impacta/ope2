@@ -4,6 +4,7 @@ import sys
 from flask import Flask, request, jsonify
 from .model import db, Usuario
 from .controller_estabelecimentos import ControllerEstabelecimentos
+from .controller_usuarios import ControllerUsuarios
 
 app = Flask(__name__)
 
@@ -14,6 +15,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 
 controller_estabelecimentos = ControllerEstabelecimentos()
+controller_usuarios = ControllerUsuarios()
 
 #
 # /estabelecimentos/
@@ -42,3 +44,16 @@ def get_estabelecimentos():
 @app.route('/estabelecimentos/<id_estabelecimento>', methods=['PUT'])
 def put_estabelecimentos(id_estabelecimento):
     return controller_estabelecimentos.put_estabelecimentos(id_estabelecimento, request)
+
+#
+# /usuarios/
+#
+
+@app.route('/usuarios/', methods=['POST'])
+def post_usuarios():
+    return controller_usuarios.post_usuarios(request)
+
+
+@app.route('/usuarios/<id_usuario>', methods=['DELETE'])
+def delete_usuarios(id_usuario):
+    return controller_usuarios.delete_usuarios(id_usuario)

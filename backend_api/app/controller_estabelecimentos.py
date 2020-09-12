@@ -6,10 +6,10 @@ class ControllerEstabelecimentos():
     def post_estabelecimentos(self, request):
         nome = request.json['nome']
         cnpj = request.json['cnpj']
-        id_novo_estabelecimento = self._criar_estabelecimento(nome, cnpj)
+        novo_estabelecimento = self._criar_estabelecimento(nome, cnpj)
         return jsonify(
             mensagem='Estabelecimento criado com sucesso.',
-            id = id_novo_estabelecimento
+            id = novo_estabelecimento.id
         )
 
     def delete_estabelecimentos(self, id_estabelecimento):
@@ -56,7 +56,7 @@ class ControllerEstabelecimentos():
         novo_estabelecimento = Estabelecimento(nome=nome, cnpj=cnpj)
         db.session.add(novo_estabelecimento)
         db.session.commit()
-        return novo_estabelecimento.id
+        return novo_estabelecimento
 
     def _deletar_estabelecimento(self, id):
         estabelecimento = Estabelecimento.query.filter_by(id=id).first()
