@@ -21,3 +21,6 @@ class ControllerEstabelecimento():
         estabelecimento.cnpj = cnpj
         db.session.add(estabelecimento)
         db.session.commit()
+
+    def listar_todos_estabelecimentos(self):
+        return Estabelecimento.query.all()

@@ -51,13 +51,42 @@ class TestApp(unittest.TestCase):
         assert response.json['nome'] == json_data['nome']
         assert response.json['cnpj'] == json_data['cnpj']
 
-    def test_atualiza_estabelecimento(self):
+    def test_listar_estabelecimentos(self):
         # arrange
-        json_data = {
+        json_data_1 = {
             'nome': 'estabelecimento teste',
             'cnpj': '12345678901234'
         }
-        id_estabelecimento = self._cria_estabelecimento(json_data).json['id']
+        id_estabelecimento_1 = self._cria_estabelecimento(json_data_1).json['id']
+
+        json_data_2 = {
+            'nome': 'estabelecimento teste_',
+            'cnpj': '1234567890123_'
+        }
+        id_estabelecimento_2 = self._cria_estabelecimento(json_data_2).json['id']     
+        
+        # act
+        response = self.client.get('/estabelecimentos/')
+
+        # assert
+        if response.json[0]['id'] == id_estabelecimento_1:
+            estabelecimento_1 = response.json[0]
+            estabelecimento_2 = response.json[1]
+        else:
+            estabelecimento_1 = response.json[1]
+            estabelecimento_2 = response.json[0]
+
+        assert estabelecimento_1['nome'] == json_data_1['nome']
+        assert estabelecimento_1['cnpj'] == json_data_1['cnpj']
+        assert estabelecimento_2['nome'] == json_data_2['nome']
+        assert estabelecimento_2['cnpj'] == json_data_2['cnpj']
+
+    def test_atualiza_estabelecimento(self):
+        # arrange
+        id_estabelecimento = self._cria_estabelecimento({
+            'nome': 'estabelecimento teste',
+            'cnpj': '12345678901234'
+        }).json['id']
 
         novo_json_data = {
             'nome': 'estabelecimento teste_',

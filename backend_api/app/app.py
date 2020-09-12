@@ -36,13 +36,26 @@ def delete_estabelecimentos(id_estabelecimento):
 
 
 @app.route('/estabelecimentos/<id_estabelecimento>', methods=['GET'])
-def get_estabelecimentos(id_estabelecimento):
+def get_estabelecimentos_id(id_estabelecimento):
     estabelecimento = controller_estabelecimento.buscar_estabelecimento(id_estabelecimento)
     return jsonify (
         id = estabelecimento.id,
         nome = estabelecimento.nome,
         cnpj = estabelecimento.cnpj
     )
+
+
+@app.route('/estabelecimentos/', methods=['GET'])
+def get_estabelecimentos():
+    estabelecimentos = controller_estabelecimento.listar_todos_estabelecimentos()
+    json_response = []
+    for estabelecimento in estabelecimentos:
+        json_response.append({
+            'id': estabelecimento.id,
+            'nome': estabelecimento.nome,
+            'cnpj': estabelecimento.cnpj
+        })    
+    return jsonify (json_response)
 
 
 @app.route('/estabelecimentos/<id_estabelecimento>', methods=['PUT'])

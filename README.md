@@ -65,6 +65,23 @@ RESPOSTA
 }
 ```
 ``` bash
+# Listar todos estabelecimentos
+GET /estabelecimentos/
+
+RESPOSTA
+[{
+    'id': '<id>',
+    'nome': '<nome>',
+    'cnpj': '<cnpj>'
+},
+{
+    'id': '<id>',
+    'nome': '<nome>',
+    'cnpj': '<cnpj>'
+}, ...
+]
+```
+``` bash
 # Buscar um estabelecimento
 GET /estabelecimentos/<id_estabelecimento>
 
