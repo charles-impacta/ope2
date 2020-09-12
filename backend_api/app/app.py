@@ -1,9 +1,9 @@
 import os
 import sys
 
-from flask import Flask, jsonify, request
+from flask import Flask, request, jsonify
 from .model import db, Usuario
-from .controller_estabelecimento import ControllerEstabelecimento
+from .controller_estabelecimentos import ControllerEstabelecimentos
 
 app = Flask(__name__)
 
@@ -13,59 +13,32 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db.init_app(app)
 
-controller_estabelecimento = ControllerEstabelecimento()
+controller_estabelecimentos = ControllerEstabelecimentos()
 
+#
+# /estabelecimentos/
+#
 
 @app.route('/estabelecimentos/', methods=['POST'])
 def post_estabelecimentos():
-    nome = request.json['nome']
-    cnpj = request.json['cnpj']
-    id_novo_estabelecimento = controller_estabelecimento.criar_estabelecimento(nome, cnpj)
-    return jsonify(
-        mensagem='Estabelecimento criado com sucesso.',
-        id = id_novo_estabelecimento
-    )
+    return controller_estabelecimentos.post_estabelecimentos(request)
 
 
 @app.route('/estabelecimentos/<id_estabelecimento>', methods=['DELETE'])
 def delete_estabelecimentos(id_estabelecimento):
-    controller_estabelecimento.deletar_estabelecimento(id_estabelecimento)
-    return jsonify(
-        mensagem = 'Estabelecimento deletado com sucesso.'
-    )
+    return controller_estabelecimentos.delete_estabelecimentos(id_estabelecimento)
 
 
 @app.route('/estabelecimentos/<id_estabelecimento>', methods=['GET'])
 def get_estabelecimentos_id(id_estabelecimento):
-    estabelecimento = controller_estabelecimento.buscar_estabelecimento(id_estabelecimento)
-    return jsonify (
-        id = estabelecimento.id,
-        nome = estabelecimento.nome,
-        cnpj = estabelecimento.cnpj
-    )
+    return controller_estabelecimentos.get_estabelecimentos_id(id_estabelecimento)
 
 
 @app.route('/estabelecimentos/', methods=['GET'])
 def get_estabelecimentos():
-    estabelecimentos = controller_estabelecimento.listar_todos_estabelecimentos()
-    json_response = []
-    for estabelecimento in estabelecimentos:
-        json_response.append({
-            'id': estabelecimento.id,
-            'nome': estabelecimento.nome,
-            'cnpj': estabelecimento.cnpj
-        })    
-    return jsonify (json_response)
+    return controller_estabelecimentos.get_estabelecimentos()
 
 
 @app.route('/estabelecimentos/<id_estabelecimento>', methods=['PUT'])
 def put_estabelecimentos(id_estabelecimento):
-    nome = request.json['nome']
-    cnpj = request.json['cnpj']
-    controller_estabelecimento.atualizar_estabelecimento(id_estabelecimento, nome, cnpj)
-    estabelecimento = controller_estabelecimento.buscar_estabelecimento(id_estabelecimento)
-    return jsonify (
-        id = estabelecimento.id,
-        nome = estabelecimento.nome,
-        cnpj = estabelecimento.cnpj
-    )
+    return controller_estabelecimentos.put_estabelecimentos(id_estabelecimento, request)
