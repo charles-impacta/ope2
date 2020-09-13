@@ -20,6 +20,37 @@ class ControllerUsuarios:
             mensagem = u'Usuário deletado com sucesso.'
         )
 
+    def get_usuarios_id(self, id_usuario):
+        usuario = self._buscar_usuario(id_usuario)
+        return jsonify(
+            id = usuario.id,
+            login = usuario.login,
+            id_estabelecimento = usuario.estabelecimento.id
+        )
+
+    def get_usuarios(self):
+        usuarios = self._listar_todos_usuarios()
+        json_response = []
+        for usuario in usuarios:
+            json_response.append({
+                'id': usuario.id,
+                'login': usuario.login,
+                'id_estabelecimento': usuario.estabelecimento.id
+            })
+        return jsonify(json_response)
+
+    def put_usuarios(self, id_usuario, request):
+        login = request.json['login']
+        senha = request.json['senha']
+        id_estabelecimento = request.json['id_estabelecimento']
+        usuario = self._atualizar_usuario(id_usuario, login, senha, id_estabelecimento)
+        return jsonify(
+            id = usuario.id,
+            login = usuario.login,
+            id_estabelecimento = usuario.estabelecimento.id
+        )
+
+
     #
     # métodos internos
     #
@@ -32,6 +63,23 @@ class ControllerUsuarios:
         return novo_usuario
 
     def _deletar_usuario(self, id):
-        usuario = Usuario.query.filter_by(id=id).first()
+        usuario = self._buscar_usuario(id)
         db.session.delete(usuario)
         db.session.commit()
+
+    def _buscar_usuario(self, id):
+        return Usuario.query.filter_by(id=id).first()
+
+    def _listar_todos_usuarios(self):
+        return Usuario.query.all()
+
+    def _atualizar_usuario(self, id_usuario, login, senha, id_estabelecimento):
+        usuario = self._buscar_usuario(id_usuario)
+        estabelecimento = Estabelecimento.query.filter_by(id=id_estabelecimento).first()
+        usuario.login = login
+        usuario.senha = senha
+        usuario.estabelecimento = estabelecimento
+        db.session.add(usuario)
+        db.session.commit()
+        return usuario
+        

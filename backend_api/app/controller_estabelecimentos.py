@@ -20,7 +20,7 @@ class ControllerEstabelecimentos():
 
     def get_estabelecimentos_id(self, id_estabelecimento):
         estabelecimento = self._buscar_estabelecimento(id_estabelecimento)
-        return jsonify (
+        return jsonify(
             id = estabelecimento.id,
             nome = estabelecimento.nome,
             cnpj = estabelecimento.cnpj
@@ -35,14 +35,13 @@ class ControllerEstabelecimentos():
                 'nome': estabelecimento.nome,
                 'cnpj': estabelecimento.cnpj
             })    
-        return jsonify (json_response)
+        return jsonify(json_response)
 
     def put_estabelecimentos(self, id_estabelecimento, request):
         nome = request.json['nome']
         cnpj = request.json['cnpj']
-        self._atualizar_estabelecimento(id_estabelecimento, nome, cnpj)
-        estabelecimento = self._buscar_estabelecimento(id_estabelecimento)
-        return jsonify (
+        estabelecimento = self._atualizar_estabelecimento(id_estabelecimento, nome, cnpj)
+        return jsonify(
             id = estabelecimento.id,
             nome = estabelecimento.nome,
             cnpj = estabelecimento.cnpj
@@ -59,7 +58,7 @@ class ControllerEstabelecimentos():
         return novo_estabelecimento
 
     def _deletar_estabelecimento(self, id):
-        estabelecimento = Estabelecimento.query.filter_by(id=id).first()
+        estabelecimento = self._buscar_estabelecimento(id)
         db.session.delete(estabelecimento)
         db.session.commit()
 
@@ -67,11 +66,12 @@ class ControllerEstabelecimentos():
         return Estabelecimento.query.filter_by(id=id).first()
 
     def _atualizar_estabelecimento(self, id, nome, cnpj):
-        estabelecimento = Estabelecimento.query.filter_by(id=id).first()
+        estabelecimento = self._buscar_estabelecimento(id)
         estabelecimento.nome = nome
         estabelecimento.cnpj = cnpj
         db.session.add(estabelecimento)
         db.session.commit()
+        return estabelecimento
 
     def _listar_todos_estabelecimentos(self):
         return Estabelecimento.query.all()

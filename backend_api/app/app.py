@@ -57,3 +57,16 @@ def post_usuarios():
 @app.route('/usuarios/<id_usuario>', methods=['DELETE'])
 def delete_usuarios(id_usuario):
     return controller_usuarios.delete_usuarios(id_usuario)
+
+
+@app.route('/usuarios/<id_usuario>', methods=['GET'])
+def get_usuarios_id(id_usuario):
+    return controller_usuarios.get_usuarios_id(id_usuario)
+
+@app.route('/usuarios/', methods=['GET'])
+def get_usuarios():
+    return controller_usuarios.get_usuarios()
+
+@app.route('/usuarios/<id_usuario>', methods=['PUT'])
+def put_usuarios(id_usuario):
+    return controller_usuarios.put_usuarios(id_usuario, request)
