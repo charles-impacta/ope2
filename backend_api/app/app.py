@@ -70,3 +70,7 @@ def get_usuarios():
 @app.route('/usuarios/<id_usuario>', methods=['PUT'])
 def put_usuarios(id_usuario):
     return controller_usuarios.put_usuarios(id_usuario, request)
+
+@app.route('/usuarios/login', methods=['POST'])
+def post_usuarios_login():
+    return controller_usuarios.post_usuarios_login(request)

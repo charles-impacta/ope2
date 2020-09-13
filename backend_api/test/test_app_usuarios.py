@@ -116,6 +116,48 @@ class TestAppUsuarios(unittest.TestCase):
         assert response.json['login'] == novo_json_data['login']
         assert response.json['id_estabelecimento'] == self.id_estabelecimento
 
+    def test_login(self):
+        # arrange
+        json_data_usuario = {
+            'login': 'login teste',
+            'senha': 'senha teste',
+            'id_estabelecimento': self.id_estabelecimento
+        }
+        id_usuario = self._cria_usuario(json_data_usuario).json['id']
+
+        json_data_login = {
+            'id_usuario': id_usuario,
+            'login': json_data_usuario['login'],
+            'senha': json_data_usuario['senha']
+        }
+
+        # act
+        response = self.client.post('/usuarios/login', json=json_data_login)
+
+        # assert
+        assert response.json['mensagem'] == 'Login efetuado com sucesso.'
+
+    def test_login_invalido(self):
+        # arrange
+        json_data_usuario = {
+            'login': 'login teste',
+            'senha': 'senha teste',
+            'id_estabelecimento': self.id_estabelecimento
+        }
+        id_usuario = self._cria_usuario(json_data_usuario).json['id']
+
+        json_data_login = {
+            'id_usuario': id_usuario,
+            'login': json_data_usuario['login'],
+            'senha': 'outra senha'
+        }
+
+        # act
+        response = self.client.post('/usuarios/login', json=json_data_login)
+
+        # assert
+        assert response.json['mensagem'] == 'Login inválido.'
+
     #
     # metodos de suporte
     #

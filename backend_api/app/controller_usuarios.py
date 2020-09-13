@@ -50,6 +50,15 @@ class ControllerUsuarios:
             id_estabelecimento = usuario.estabelecimento.id
         )
 
+    def post_usuarios_login(self, request):
+        id_usuario = request.json['id_usuario']
+        login = request.json['login']
+        senha = request.json['senha']
+        if self._efetuar_login(id_usuario, login, senha):
+            return jsonify(mensagem='Login efetuado com sucesso.')
+        else:
+            return jsonify(mensagem='Login inválido.')
+
 
     #
     # métodos internos
@@ -82,4 +91,7 @@ class ControllerUsuarios:
         db.session.add(usuario)
         db.session.commit()
         return usuario
-        
+
+    def _efetuar_login(self, id_usuario, login, senha):
+        usuario = self._buscar_usuario(id_usuario)
+        return usuario.login == login and usuario.senha == senha
