@@ -43,16 +43,16 @@ ope2$ source venv/bin/activate
 ### Estabelecimentos
 ``` bash
 # Criar um estabelecimento
-POST /estabelecimentos
+POST /estabelecimentos/
 {
-    'nome': '<nome>',
-    'cnpj': '<cnpj>'
+    "nome": "<nome>",
+    "cnpj": "<cnpj>"
 }
 
 RESPOSTA
 {
-    'mensagem': 'Estabelecimento criado com sucesso.',
-    'id': '<id>'
+    "mensagem": "Estabelecimento criado com sucesso.",
+    "id": "<id>"
 }
 ```
 ``` bash
@@ -61,7 +61,7 @@ DELETE /estabelecimentos/<id_estabelecimento>
 
 RESPOSTA
 {
-    'mensagem': 'Estabelecimento deletado com sucesso.'
+    "mensagem": "Estabelecimento deletado com sucesso."
 }
 ```
 ``` bash
@@ -70,14 +70,14 @@ GET /estabelecimentos/
 
 RESPOSTA
 [{
-    'id': '<id>',
-    'nome': '<nome>',
-    'cnpj': '<cnpj>'
+    "id": "<id>",
+    "nome": "<nome>",
+    "cnpj": "<cnpj>"
 },
 {
-    'id': '<id>',
-    'nome': '<nome>',
-    'cnpj': '<cnpj>'
+    "id": "<id>",
+    "nome": "<nome>",
+    "cnpj": "<cnpj>"
 }, ...
 ]
 ```
@@ -87,23 +87,111 @@ GET /estabelecimentos/<id_estabelecimento>
 
 RESPOSTA
 {
-    'id': '<id>',
-    'nome': '<nome>',
-    'cnpj': '<cnpj>'
+    "id": "<id>",
+    "nome": "<nome>",
+    "cnpj": "<cnpj>"
 }
 ```
 ``` bash
 # Atualizar um estabelecimento
 PUT /estabelecimentos/<id_estabelecimento>
 {
-    'nome': '<nome>',
-    'cnpj': '<cnpj>'
+    "nome": "<nome>",
+    "cnpj": "<cnpj>"
 }
 
 RESPOSTA
 {
-    'id': '<id>',
-    'nome': '<nome>',
-    'cnpj': '<cnpj>'
+    "id": "<id>",
+    "nome": "<nome>",
+    "cnpj": "<cnpj>"
+}
+```
+
+### Usuários
+``` bash
+# Criar um usuário
+POST /usuarios/
+{
+    "login": "<login>",
+    "senha": "<senha>",
+    "id_estabelecimento": <id_estabelecimento>
+}
+
+RESPOSTA
+{
+    "mensagem": "Usuário criado com sucesso.",
+    "id": "<id>"
+}
+```
+``` bash
+# Deletar um usuário
+DELETE /usuarios/<id_usuario>
+
+RESPOSTA
+{
+    "mensagem": "Usuário deletado com sucesso."
+}
+```
+``` bash
+# Listar todos usuários
+GET /usuarios/
+
+RESPOSTA
+[{
+    "id": "<id>",
+    "id_estabelecimento": "<id_estabelecimento>",
+    "login": "<login>"
+},
+{
+    "id": "<id>",
+    "id_estabelecimento": "<id_estabelecimento>",
+    "login": "<login>"
+}, ...
+]
+```
+``` bash
+# Buscar um usuário
+GET /usuarios/<id_usuario>
+
+RESPOSTA
+{
+    "id": "<id>",
+    "id_estabelecimento": "<id_estabelecimento>",
+    "login": "<login>"
+}
+```
+``` bash
+# Atualizar um usuário
+PUT /usuarios/<id_usuario>
+{
+    "login": "<login>",
+    "senha": "<senha>",
+    "id_estabelecimento": <id_estabelecimento>
+}
+
+RESPOSTA
+{
+    "id": "<id>",
+    "id_estabelecimento": "<id_estabelecimento>",
+    "login": "<login>"
+}
+```
+``` bash
+# Realizar login do usuário
+POST /usuarios/login
+{
+    "id_usuario": "<id_usuario>",
+    "login": "<login>",
+    "senha": "<senha>"
+}
+
+RESPOSTA
+{
+    "mensagem": "Login efetuado com sucesso."
+}
+OU
+{
+    "mensagem": "Login inválido."
 }
 ```
