@@ -34,11 +34,7 @@ class TestAppUsuarios(unittest.TestCase):
 
     def test_cria_usuario(self):
         # arrange
-        json_data = {
-            'login': 'login teste',
-            'senha': 'senha teste',
-            'id_estabelecimento': self.id_estabelecimento
-        }
+        json_data = self._test_data()
 
         #act
         response = self._cria_usuario(json_data)
@@ -48,11 +44,7 @@ class TestAppUsuarios(unittest.TestCase):
 
     def test_busca_usuario(self):
         # arrange
-        json_data = {
-            'login': 'login teste',
-            'senha': 'senha teste',
-            'id_estabelecimento': self.id_estabelecimento
-        }
+        json_data = self._test_data()
         id_usuario = self._cria_usuario(json_data).json['id']
 
         # act
@@ -65,11 +57,7 @@ class TestAppUsuarios(unittest.TestCase):
 
     def test_listar_usuarios(self):
         # arrange
-        json_data_1 = {
-            'login': 'login teste',
-            'senha': 'senha teste',
-            'id_estabelecimento': self.id_estabelecimento
-        }
+        json_data_1 = self._test_data()
         id_usuario_1  = self._cria_usuario(json_data_1).json['id']
 
         json_data_2 = {
@@ -77,18 +65,17 @@ class TestAppUsuarios(unittest.TestCase):
             'senha': 'senha teste_',
             'id_estabelecimento': self.id_estabelecimento
         }
-        self._cria_usuario(json_data_2).json['id']
+        id_usuario_2 = self._cria_usuario(json_data_2).json['id']
 
         # act
         response = self.client.get('/usuarios/')
 
         # assert
-        if response.json[0]['id'] == id_usuario_1:
-            usuario_1 = response.json[0]
-            usuario_2 = response.json[1]
-        else:
-            usuario_1 = response.json[1]
-            usuario_2 = response.json[0]
+        for response_item in response.json:
+            if response_item['id'] == id_usuario_1:
+                usuario_1 = response_item
+            if response_item['id'] == id_usuario_2:
+                usuario_2 = response_item
 
         assert usuario_1['login'] == json_data_1['login']
         assert usuario_1['id_estabelecimento'] == json_data_1['id_estabelecimento']
@@ -97,11 +84,7 @@ class TestAppUsuarios(unittest.TestCase):
 
     def test_atualizar_usuario(self):
         # arrange
-        id_usuario = self._cria_usuario({
-            'login': 'login teste',
-            'senha': 'senha teste',
-            'id_estabelecimento': self.id_estabelecimento
-        }).json['id']
+        id_usuario = self._cria_usuario(self._test_data()).json['id']
         novo_json_data = {
             'login': 'login teste_',
             'senha': 'senha teste_',
@@ -118,11 +101,7 @@ class TestAppUsuarios(unittest.TestCase):
 
     def test_login(self):
         # arrange
-        json_data_usuario = {
-            'login': 'login teste',
-            'senha': 'senha teste',
-            'id_estabelecimento': self.id_estabelecimento
-        }
+        json_data_usuario = self._test_data()
         id_usuario = self._cria_usuario(json_data_usuario).json['id']
 
         json_data_login = {
@@ -139,11 +118,7 @@ class TestAppUsuarios(unittest.TestCase):
 
     def test_login_invalido(self):
         # arrange
-        json_data_usuario = {
-            'login': 'login teste',
-            'senha': 'senha teste',
-            'id_estabelecimento': self.id_estabelecimento
-        }
+        json_data_usuario = self._test_data()
         id_usuario = self._cria_usuario(json_data_usuario).json['id']
 
         json_data_login = {
@@ -166,3 +141,10 @@ class TestAppUsuarios(unittest.TestCase):
         response = self.client.post('/usuarios/', json=json_data)
         self.ids_usuarios_criados.append(response.json['id'])
         return response
+
+    def _test_data(self):
+        return {
+            'login': 'login teste',
+            'senha': 'senha teste',
+            'id_estabelecimento': self.id_estabelecimento
+        }

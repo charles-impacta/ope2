@@ -24,10 +24,7 @@ class TestApp(unittest.TestCase):
 
     def test_cria_estabelecimento(self):
         # arrange
-        json_data = {
-            'nome': 'nome teste',
-            'cnpj': '12345678901234'
-        }
+        json_data = self._test_data()
         
         # act
         response = self._cria_estabelecimento(json_data)
@@ -37,10 +34,7 @@ class TestApp(unittest.TestCase):
 
     def test_busca_estabelecimento(self):
         # arrange
-        json_data = {
-            'nome': 'estabelecimento teste',
-            'cnpj': '12345678901234'
-        }
+        json_data = self._test_data()
         id_estabelecimento = self._cria_estabelecimento(json_data).json['id']
 
         # act
@@ -53,10 +47,7 @@ class TestApp(unittest.TestCase):
 
     def test_listar_estabelecimentos(self):
         # arrange
-        json_data_1 = {
-            'nome': 'estabelecimento teste',
-            'cnpj': '12345678901234'
-        }
+        json_data_1 = self._test_data()
         id_estabelecimento_1 = self._cria_estabelecimento(json_data_1).json['id']
 
         json_data_2 = {
@@ -69,12 +60,11 @@ class TestApp(unittest.TestCase):
         response = self.client.get('/estabelecimentos/')
 
         # assert
-        if response.json[0]['id'] == id_estabelecimento_1:
-            estabelecimento_1 = response.json[0]
-            estabelecimento_2 = response.json[1]
-        else:
-            estabelecimento_1 = response.json[1]
-            estabelecimento_2 = response.json[0]
+        for response_item in response.json:
+            if response_item['id'] == id_estabelecimento_1:
+                estabelecimento_1 = response_item
+            if response_item['id'] == id_estabelecimento_2:
+                estabelecimento_2 = response_item
 
         assert estabelecimento_1['nome'] == json_data_1['nome']
         assert estabelecimento_1['cnpj'] == json_data_1['cnpj']
@@ -83,10 +73,7 @@ class TestApp(unittest.TestCase):
 
     def test_atualiza_estabelecimento(self):
         # arrange
-        id_estabelecimento = self._cria_estabelecimento({
-            'nome': 'estabelecimento teste',
-            'cnpj': '12345678901234'
-        }).json['id']
+        id_estabelecimento = self._cria_estabelecimento(self._test_data()).json['id']
 
         novo_json_data = {
             'nome': 'estabelecimento teste_',
@@ -110,3 +97,9 @@ class TestApp(unittest.TestCase):
         response = self.client.post('/estabelecimentos/', json=json_data)
         self.ids_estabelecimentos_criados.append(response.json['id'])
         return response
+
+    def _test_data(self):
+        return {
+            'nome': 'estabelecimento teste',
+            'cnpj': '12345678901234'
+        }
