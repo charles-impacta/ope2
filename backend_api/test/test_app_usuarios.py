@@ -105,7 +105,6 @@ class TestAppUsuarios(unittest.TestCase):
         id_usuario = self._cria_usuario(json_data_usuario).json['id']
 
         json_data_login = {
-            'id_usuario': id_usuario,
             'login': json_data_usuario['login'],
             'senha': json_data_usuario['senha']
         }
@@ -122,7 +121,6 @@ class TestAppUsuarios(unittest.TestCase):
         id_usuario = self._cria_usuario(json_data_usuario).json['id']
 
         json_data_login = {
-            'id_usuario': id_usuario,
             'login': json_data_usuario['login'],
             'senha': 'outra senha'
         }

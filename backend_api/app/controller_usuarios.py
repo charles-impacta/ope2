@@ -51,10 +51,9 @@ class ControllerUsuarios:
         )
 
     def post_usuarios_login(self, request):
-        id_usuario = request.json['id_usuario']
         login = request.json['login']
         senha = request.json['senha']
-        if self._efetuar_login(id_usuario, login, senha):
+        if self._efetuar_login(login, senha):
             return jsonify(mensagem='Login efetuado com sucesso.')
         else:
             return jsonify(mensagem='Login inválido.')
@@ -79,6 +78,9 @@ class ControllerUsuarios:
     def _buscar_usuario(self, id):
         return Usuario.query.filter_by(id=id).first()
 
+    def _buscar_usuario_por_login(self, login):
+        return Usuario.query.filter_by(login=login).first()
+
     def _listar_todos_usuarios(self):
         return Usuario.query.all()
 
@@ -92,6 +94,6 @@ class ControllerUsuarios:
         db.session.commit()
         return usuario
 
-    def _efetuar_login(self, id_usuario, login, senha):
-        usuario = self._buscar_usuario(id_usuario)
+    def _efetuar_login(self, login, senha):
+        usuario = self._buscar_usuario_por_login(login)
         return usuario.login == login and usuario.senha == senha
