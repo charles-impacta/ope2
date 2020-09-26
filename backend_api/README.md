@@ -198,7 +198,6 @@ RESPOSTA
 # Realizar login do usuário
 POST /usuarios/login
 {
-    "id_usuario": "<id_usuario>",
     "login": "<login>",
     "senha": "<senha>"
 }
