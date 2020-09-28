@@ -106,8 +106,8 @@ class TestEstabelecimentos(BaseTest):
         r = requests.get(self._url)
         r_json = r.json()
 
-        estabelecimento_1 = self._busca_etabelecimento_na_lista(r_json, id_estabelecimento_1)
-        estabelecimento_2 = self._busca_etabelecimento_na_lista(r_json, id_estabelecimento_2)
+        estabelecimento_1 = self._busca_estabelecimento_na_lista(r_json, id_estabelecimento_1)
+        estabelecimento_2 = self._busca_estabelecimento_na_lista(r_json, id_estabelecimento_2)
 
         # assert
         assert r.ok
@@ -142,7 +142,7 @@ class TestEstabelecimentos(BaseTest):
     def _delete_estabelecimentos(self, id):
         requests.delete(self._url + str(id))
 
-    def _busca_etabelecimento_na_lista(self, lista, id):
+    def _busca_estabelecimento_na_lista(self, lista, id):
         result = None
         for estabelecimento in lista:
             if estabelecimento['id'] == id:
