@@ -25,7 +25,7 @@ class ControllerUsuarios:
         return jsonify(
             id = usuario.id,
             login = usuario.login,
-            id_estabelecimento = usuario.estabelecimento.id
+            id_estabelecimento = usuario.estabelecimento.id 
         )
 
     def get_validar_usuario_login(self, login):
