@@ -52,7 +52,11 @@ class ControllerEstabelecimentos():
     #
 
     def _criar_estabelecimento(self, nome, cnpj):
-        novo_estabelecimento = Estabelecimento(nome=nome, cnpj=cnpj)
+       
+        if Estabelecimento.query.filter_by(cnpj=cnpj).count() > 0:
+            raise Exception("Já existe um estabelecimento com CNPJ informado!")
+
+        novo_estabelecimento = Estabelecimento(nome=nome, cnpj=cnpj) 
         db.session.add(novo_estabelecimento)
         db.session.commit()
         return novo_estabelecimento
@@ -65,7 +69,14 @@ class ControllerEstabelecimentos():
     def _buscar_estabelecimento(self, id):
         return Estabelecimento.query.filter_by(id=id).first()
 
+    def _validar_estabelecimento_cnpj(self, cnpj):
+        return Estabelecimento.query.filter_by(cnpj=cnpj).first()
+
     def _atualizar_estabelecimento(self, id, nome, cnpj):
+
+        if Estabelecimento.query.filter_by(cnpj=cnpj and id != id).count() > 0:
+            raise Exception("Já existe um estabelecimento com CNPJ informado!")
+
         estabelecimento = self._buscar_estabelecimento(id)
         estabelecimento.nome = nome
         estabelecimento.cnpj = cnpj

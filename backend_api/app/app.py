@@ -7,8 +7,11 @@ from .controller_estabelecimentos import ControllerEstabelecimentos
 from .controller_usuarios import ControllerUsuarios
 from .controller_categorias import ControllerCategorias
 from .controller_produtos import ControllerProdutos
+from flask_cors import CORS
 
 app = Flask(__name__)
+
+CORS(app)
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'data.sqlite')
@@ -22,12 +25,15 @@ controller_categorias = ControllerCategorias()
 controller_produtos = ControllerProdutos()
 
 #
-# /estabelecimentos/
+# /estabelecimentos/    '
 #
 
 @app.route('/estabelecimentos/', methods=['POST'])
 def post_estabelecimentos():
-    return controller_estabelecimentos.post_estabelecimentos(request)
+    try:
+        return controller_estabelecimentos.post_estabelecimentos(request)
+    except Exception as e:
+        return str(e) , 400
 
 
 @app.route('/estabelecimentos/<id_estabelecimento>', methods=['DELETE'])
@@ -77,8 +83,18 @@ def put_usuarios(id_usuario):
 
 @app.route('/usuarios/login', methods=['POST'])
 def post_usuarios_login():
-    return controller_usuarios.post_usuarios_login(request)
+    try:
+        return controller_usuarios.post_usuarios_login(request)
+    except Exception as e:
+        return str(e) , 400
 
+@app.route('/usuarios/validar-login/<login>', methods=['GET'])
+def get_validar_login(login):
+    try:
+        controller_usuarios.get_validar_usuario_login(login)
+        return jsonify("ok")
+    except Exception as e:
+        return str(e) , 400
 #
 # /categorias/
 #
