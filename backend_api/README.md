@@ -47,7 +47,7 @@ No Windows, crie as variáveis utilizadno as configurações do sistema:
 
 ### Rodar os testes
 ``` bash
-(venv) ope2$ python -m unittest discover
+(venv) ope2$ python -m unittest discover backend_api/
 ```
 
 ### Iniciar o Flask

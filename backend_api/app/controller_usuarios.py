@@ -17,7 +17,8 @@ class ControllerUsuarios:
     def delete_usuarios(self, id_usuario):
         self._deletar_usuario(id_usuario)
         return jsonify(
-            mensagem = u'Usuário deletado com sucesso.'
+            mensagem = u'Usuário deletado com sucesso.' 
+            
         )
 
     def get_usuarios_id(self, id_usuario):
@@ -25,9 +26,16 @@ class ControllerUsuarios:
         return jsonify(
             id = usuario.id,
             login = usuario.login,
-            id_estabelecimento = usuario.estabelecimento.id
+            id_estabelecimento = usuario.estabelecimento.id 
         )
 
+    def get_validar_usuario_login(self, login):
+
+        usuario = self._buscar_usuario_por_login(login)
+        
+        if usuario is not None:
+            raise Exception("Já existe um cadastro com login informado!")
+    
     def get_usuarios(self):
         usuarios = self._listar_todos_usuarios()
         json_response = []
@@ -53,10 +61,8 @@ class ControllerUsuarios:
     def post_usuarios_login(self, request):
         login = request.json['login']
         senha = request.json['senha']
-        if self._efetuar_login(login, senha):
-            return jsonify(mensagem='Login efetuado com sucesso.')
-        else:
-            return jsonify(mensagem='Login inválido.')
+        return self._efetuar_login(login, senha)
+   
 
 
     #
@@ -85,6 +91,10 @@ class ControllerUsuarios:
         return Usuario.query.all()
 
     def _atualizar_usuario(self, id_usuario, login, senha, id_estabelecimento):
+
+        if(Usuario.query.filter(login == login and  id_usuario != id_usuario).count() > 0):
+            raise Exception("Já existe um login com os dados informados!")
+
         usuario = self._buscar_usuario(id_usuario)
         estabelecimento = Estabelecimento.query.filter_by(id=id_estabelecimento).first()
         usuario.login = login
@@ -95,5 +105,12 @@ class ControllerUsuarios:
         return usuario
 
     def _efetuar_login(self, login, senha):
-        usuario = self._buscar_usuario_por_login(login)
-        return usuario.login == login and usuario.senha == senha
+        usuario = Usuario.query.filter_by(login=login, senha=senha).first()
+
+        if usuario is None:
+            raise Exception("Login e/ou senha inválidos!")
+        else:
+            return jsonify(
+            id = usuario.id,
+            login = usuario.login,
+            id_estabelecimento = usuario.estabelecimento.id)
