@@ -1,6 +1,8 @@
-import unittest
+import unittest, os, sys
 
-from ..app import app
+sys.path.insert(1, os.path.join(sys.path[0], '..'))
+
+from app import app
 
 
 class TestAppUsuarios(unittest.TestCase):
@@ -113,7 +115,7 @@ class TestAppUsuarios(unittest.TestCase):
         response = self.client.post('/usuarios/login', json=json_data_login)
 
         # assert
-        assert response.json['mensagem'] == 'Login efetuado com sucesso.'
+        assert response.status_code == 200
 
     def test_login_invalido(self):
         # arrange
@@ -129,7 +131,7 @@ class TestAppUsuarios(unittest.TestCase):
         response = self.client.post('/usuarios/login', json=json_data_login)
 
         # assert
-        assert response.json['mensagem'] == 'Login inválido.'
+        assert response.status_code == 400
 
     #
     # metodos de suporte

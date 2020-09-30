@@ -1,6 +1,8 @@
-import unittest
+import unittest, os, sys
 
-from ..app import app
+sys.path.insert(1, os.path.join(sys.path[0], '..'))
+
+from app import app
 
 
 class TestApp(unittest.TestCase):
