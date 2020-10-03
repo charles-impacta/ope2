@@ -1,0 +1,48 @@
+<section class="container section-main">
+  <header class="header-title">
+    <div class="row">
+      <div class="col-xs-6 col-sm-11">
+        <h2> <i class="fas fa-th"></i> Categorias de Produtos</h2>
+      </div>
+      <div class="col-xs-6 col-sm-1 text-right">
+        <a class="btn btn-rounded btn-success" routerLink="./new" title="Adicionar Nova Categoria">
+          <i class="fa fa-plus"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+  <section>
+    <div class="row">
+      <div class="col-12">
+        <table class="table table-cardapio-web">
+          <thead>
+            <tr>
+              <th>Categoria</th>
+              <th class="text-center">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of listCategorias">
+              <td>{{ item.nome }}</td>
+              <td class="actions text-center">
+                <a
+                  class="btn btn-cardapio-default btn-rounded"
+                  title="Editar Categoria"
+                  routerLink="./edit/{{ item.id }}"
+                  [state]="{ data: item }"
+                  ><i class="fa fa-pencil"></i
+                ></a>
+                <a class="btn btn-danger btn-rounded" title="Excluir Categoria">
+                  <i class="fa fa-close"></i
+                ></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+  <footer class="footer-info">
+    Existe(m) {{ listCategorias.length }} Categoria(s)
+  </footer>
+</section>

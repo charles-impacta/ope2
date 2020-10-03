@@ -1,0 +1,111 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-red">
+  <section class="container-fluid">
+    <a class="navbar-brand" href="#">Cardápio na Web</a>
+    <a class="btn btn-warning pull-right" routerLink="/login" >Entrar</a>
+  </section>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent"></div>
+</nav>
+
+<section class="container">
+  <form [formGroup]="frmFormulario" (ngSubmit)="onSubmit()">
+    <div class="row justify-content-md-center">
+      <div class="col-xs-10 col-sm-6 col-lg-6">
+        <div class="section-cadastro justify-content-md-center">
+          <div class="row">
+            <div class="col-12 logo-cadastro text-center">
+              <img src="assets/images/chef-icon-red.png" />
+            </div>
+            <div class="col-12 logo-cadastro text-center">
+              <h2>
+                A cozinha é com você, mas seu cardápio é com a gente, veja como
+                é simples!
+              </h2>
+            </div>
+            <div class="col-12 form-group">
+              <input
+                type="text"
+                class="form-control"
+                maxlength="64"
+                [class.has-error]="
+                  frmFormulario.get('nome').invalid && submited
+                "
+                formControlName="nome"
+                placeholder="Qual o nome do estabelecimento?"
+              />
+            </div>
+            <div class="col-12 form-group">
+              <input
+                type="text"
+                class="form-control"
+                maxlength="18"
+                mask="00.000.000/0000-00"
+                [class.has-error]="
+                  frmFormulario.get('cnpj').invalid && submited
+                "
+                formControlName="cnpj"
+                required
+                placeholder="Cnpj"
+              />
+            </div>
+            <div class="col-12 form-group">
+              <input
+                type="text"
+                maxlength="32"
+                class="form-control"
+                [class.has-error]="
+                  frmFormulario.get('login').invalid && submited
+                "
+                formControlName="login"
+                required
+                placeholder="E-mail para contato."
+              />
+            </div>
+            <div class="col-12 form-group">
+              <input
+                type="password"
+                maxlength="64"
+                class="form-control"
+                [class.has-error]="
+                  frmFormulario.get('password').invalid && submited
+                "
+                formControlName="password"
+                placeholder="Informe uma senha."
+              />
+            </div>
+            <div class="col-12 form-group">
+              <input
+                type="password"
+                maxlength="64"
+                class="form-control"
+                [class.has-error]="
+                  frmFormulario.get('confirmPassword').invalid && submited
+                "
+                formControlName="confirmPassword"
+                placeholder="Confirme a senha."
+              />
+              <div
+                class="row"
+                *ngIf="frmFormulario.hasError('invalidConfirm') && submited"
+              >
+                <div class="col-12" style="padding:8px 5px 5px 15px;">
+                  <span class="text-danger"
+                    ><strong>Confirme a senha corretamente</strong></span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 form-group">
+              <button
+                type="submit"
+                class="btn btn-danger btn-block btn-cardapio"
+              >
+                Et voilà concluir cadastro
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</section>

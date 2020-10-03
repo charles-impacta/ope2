@@ -1,0 +1,40 @@
+<section class="container section-main">
+  <header class="header-title">
+    <div class="row">
+      <div class="col-xs-6 col-sm-11">
+        <h2> <i class="fas fa-house-user"></i> Estabelecimento</h2>
+      </div>
+    </div>
+  </header>
+  <section>
+    <div class="row">
+      <div class="col-12">
+        <table class="table table-cardapio-web">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th class="text-center">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of listEstabelecimento">
+              <td>{{ item.nome }}</td>
+              <td class="actions text-center">
+                <a
+                  class="btn btn-cardapio-default btn-rounded"
+                  title="Editar Categoria"
+                  routerLink="./edit/{{ item.id }}"
+                  ><i class="fa fa-pencil"></i
+                ></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer-info">
+
+  </footer>
+</section>

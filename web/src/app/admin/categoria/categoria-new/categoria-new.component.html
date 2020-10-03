@@ -1,0 +1,34 @@
+<form [formGroup]="frmFormulario" (ngSubmit)="onSubmit()">
+  <section class="container section-main">
+    <header class="header-title">
+      <h2>Nova Categoria</h2>
+    </header>
+    <section>
+      <div class="row">
+        <div class="col-12 form-group">
+          <label class="control-label">Nome</label>
+          <input
+            type="text"
+            class="form-control"
+            [class.has-error]="
+              frmFormulario.get('nome').invalid && submited
+            "
+            formControlName="nome"
+            placeholder="Informe o Nome da Categoria"
+          />
+        </div>
+      </div>
+    </section>
+    <footer class="row">
+      <div class="col-12 form-group">
+        <button type="submit" class="btn btn-danger">
+          Salvar
+        </button>
+        &nbsp;
+        <a class="btn btn-default btn-cardapio-default" routerLink="/admin/categorias" >
+          Cancelar
+        </a>
+      </div>
+    </footer>
+  </section>
+</form>
