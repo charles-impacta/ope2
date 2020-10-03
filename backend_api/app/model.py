@@ -9,7 +9,7 @@ class Usuario(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     login = db.Column(db.String(32), unique=True, index=True)
     senha = db.Column(db.String(64))
-
+    isAdmin = db.Column(db.Boolean)
     estabelecimento_id = db.Column(db.Integer, db.ForeignKey('estabelecimentos.id'))
 
     def __repr__(self):

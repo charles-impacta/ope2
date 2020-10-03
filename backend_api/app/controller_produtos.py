@@ -1,6 +1,7 @@
 from .model import db, Produto, Estabelecimento, Categoria
 from flask import jsonify
 
+
 class ControllerProdutos():
 
     def post_produtos(self, request):
@@ -12,30 +13,47 @@ class ControllerProdutos():
         estabelecimento_id = request.json['estabelecimento_id']
         categoria_id = request.json['categoria_id']
 
-        novo_produto = self._criar_produto(nome, descricao, ingredientes, modo_de_preparo, preco, estabelecimento_id, categoria_id)
+        novo_produto = self._criar_produto(
+            nome, descricao, ingredientes, modo_de_preparo, preco, estabelecimento_id, categoria_id)
         return jsonify(
             mensagem='Produto criada com sucesso.',
-            id = novo_produto.id
+            id=novo_produto.id
         )
 
     def delete_produtos(self, id_produto):
         self._deletar_produto(id_produto)
         return jsonify(
-            mensagem = 'Produto deletado com sucesso.'
+            mensagem='Produto deletado com sucesso.'
         )
 
     def get_produtos_id(self, id_produto):
         produto = self._buscar_produto(id_produto)
         return jsonify(
-            id = produto.id,
-            nome = produto.nome,
-            descricao = produto.descricao,
-            ingredientes = produto.ingredientes,
-            modo_de_preparo = produto.modo_de_preparo,
-            preco = produto.preco,
-            estabelecimento_id = produto.estabelecimento.id,
-            categoria_id = produto.categoria.id
+            id=produto.id,
+            nome=produto.nome,
+            descricao=produto.descricao,
+            ingredientes=produto.ingredientes,
+            modo_de_preparo=produto.modo_de_preparo,
+            preco=produto.preco,
+            estabelecimento_id=produto.estabelecimento.id,
+            categoria_id=produto.categoria.id
         )
+    
+    def get_produtos_estabelecimento_id(self, estabelecimento_id):
+        produtos = self._buscar_produtos_estabelecimento(estabelecimento_id)
+        json_response = []
+        for produto in produtos:
+            json_response.append({
+                'id': produto.id,
+                'nome': produto.nome,
+                'descricao': produto.descricao,
+                'ingredientes': produto.ingredientes,
+                'modo_de_preparo': produto.modo_de_preparo,
+                'preco': produto.preco,
+                'estabelecimento_id': produto.estabelecimento.id,
+                'categoria_id': produto.categoria.id
+            })
+        return jsonify(json_response)
 
     def get_produtos(self):
         produtos = self._listar_todos_produtos()
@@ -44,16 +62,18 @@ class ControllerProdutos():
             json_response.append({
                 'id': produto.id,
                 'nome': produto.nome,
-                'descricao' : produto.descricao,
-                'ingredientes' : produto.ingredientes,
-                'modo_de_preparo' : produto.modo_de_preparo,
-                'preco' : produto.preco,
-                'estabelecimento_id' : produto.estabelecimento.id,
-                'categoria_id' : produto.categoria.id
-            })    
+                'descricao': produto.descricao,
+                'ingredientes': produto.ingredientes,
+                'modo_de_preparo': produto.modo_de_preparo,
+                'preco': produto.preco,
+                'estabelecimento_id': produto.estabelecimento.id,
+                'categoria_id': produto.categoria.id
+            })
         return jsonify(json_response)
 
-    def put_produtos(self, id_categoria, request):
+    def put_produtos(self, request):
+        
+        id = request.json['id']
         nome = request.json['nome']
         descricao = request.json['descricao']
         ingredientes = request.json['ingredientes']
@@ -62,16 +82,17 @@ class ControllerProdutos():
         estabelecimento_id = request.json['estabelecimento_id']
         categoria_id = request.json['categoria_id']
 
-        produto = self._atualizar_produto(id_categoria, nome, descricao, ingredientes, modo_de_preparo, preco, estabelecimento_id, categoria_id)
+        produto = self._atualizar_produto(
+            id, nome, descricao, ingredientes, modo_de_preparo, preco, estabelecimento_id, categoria_id)
         return jsonify(
-            id = produto.id,
-            nome = produto.nome,
-            descricao = produto.descricao,
-            ingredientes = produto.ingredientes,
-            modo_de_preparo = produto.modo_de_preparo,
-            preco = produto.preco,
-            estabelecimento_id = produto.estabelecimento.id,
-            categoria_id = produto.categoria.id
+            id=produto.id,
+            nome=produto.nome,
+            descricao=produto.descricao,
+            ingredientes=produto.ingredientes,
+            modo_de_preparo=produto.modo_de_preparo,
+            preco=produto.preco,
+            estabelecimento_id=produto.estabelecimento.id,
+            categoria_id=produto.categoria.id
         )
 
     #
@@ -79,9 +100,11 @@ class ControllerProdutos():
     #
 
     def _criar_produto(self, nome, descricao, ingredientes, modo_de_preparo, preco, estabelecimento_id, categoria_id):
-        estabelecimento = Estabelecimento.query.filter_by(id=estabelecimento_id).first()
+        estabelecimento = Estabelecimento.query.filter_by(
+            id=estabelecimento_id).first()
         categoria = Categoria.query.filter_by(id=categoria_id).first()
-        novo_produto = Produto(nome=nome, descricao=descricao, ingredientes=ingredientes, modo_de_preparo=modo_de_preparo, preco=preco, estabelecimento=estabelecimento, categoria=categoria)
+        novo_produto = Produto(nome=nome, descricao=descricao, ingredientes=ingredientes,
+                               modo_de_preparo=modo_de_preparo, preco=preco, estabelecimento=estabelecimento, categoria=categoria)
         db.session.add(novo_produto)
         db.session.commit()
         return novo_produto
@@ -94,8 +117,18 @@ class ControllerProdutos():
     def _buscar_produto(self, id):
         return Produto.query.filter_by(id=id).first()
 
+    def _buscar_produtos_estabelecimento(self, estabelecimento_id):
+        return Produto.query.filter_by(estabelecimento_id=estabelecimento_id)
+
     def _atualizar_produto(self, id, nome, descricao, ingredientes, modo_de_preparo, preco, estabelecimento_id, categoria_id):
         produto = self._buscar_produto(id)
+
+        if produto == None:
+            raise Exception("Nenhum produto encontrado!")
+
+        if Produto.query.filter(Produto.nome == nome , Produto.id != id).count() > 0:
+            raise Exception("Já existe um produto com o nome informado!")
+        
         estabelecimento = Estabelecimento.query.filter_by(id=estabelecimento_id).first()
         categoria = Categoria.query.filter_by(id=categoria_id).first()
         produto.nome = nome
