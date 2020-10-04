@@ -1,0 +1,49 @@
+<form [formGroup]="frmFormulario" (ngSubmit)="onSubmit()">
+  <section class="container section-main">
+    <header class="header-title">
+      <h2>Editar Estabelecimento</h2>
+    </header>
+    <section>
+      <div class="row">
+        <div class="col-12 form-group">
+          <label class="control-label">CNPJ</label>
+          <input
+            type="text"
+            readonly
+            class="form-control"
+            maxlength="18"
+            mask="00.000.000/0000-00"
+            [class.has-error]="frmFormulario.get('cnpj').invalid && submited"
+            formControlName="cnpj"
+            required
+            placeholder="Cnpj"
+          />
+        </div>
+        <div class="col-12 form-group">
+          <label class="control-label">Nome</label>
+          <input
+            type="text"
+            class="form-control"
+            maxlength="64"
+            [class.has-error]="frmFormulario.get('nome').invalid && submited"
+            formControlName="nome"
+            placeholder="Nome"
+          />
+        </div>
+
+      </div>
+    </section>
+    <footer class="row">
+      <div class="col-12 form-group">
+        <button type="submit" class="btn btn-danger">Salvar</button>
+        &nbsp;
+        <a
+          class="btn btn-default btn-cardapio-default"
+          routerLink="/admin/produto-cardapio"
+        >
+          Cancelar
+        </a>
+      </div>
+    </footer>
+  </section>
+</form>

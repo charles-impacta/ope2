@@ -1,0 +1,64 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-red">
+  <section class="container-fluid">
+    <a class="navbar-brand" href="#">Cardápio na Web</a>
+    <a class="btn btn-warning pull-right" routerLink="/login" >Entrar</a>
+  </section>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent"></div>
+</nav>
+
+<section class="container">
+  <form [formGroup]="frmFormulario" (ngSubmit)="onSubmit()">
+    <div class="row justify-content-md-center">
+      <div class="col-xs-10 col-sm-6 col-lg-6">
+        <div class="section-cadastro justify-content-md-center">
+          <div class="row">
+            <div class="col-12 logo-cadastro text-center">
+              <img src="assets/images/chef-icon-red.png" />
+            </div>
+            <div class="col-12 logo-cadastro text-center">
+              <h2>Seja bem vindo!</h2>
+            </div>
+            <div class="col-12 form-group">
+              <label class="control-label"><strong> E-mail</strong></label>
+              <input
+                type="text"
+                class="form-control"
+                autocomplete="off"
+                [class.has-error]="
+                  frmFormulario.get('login').invalid && submited
+                "
+                formControlName="login"
+                placeholder="E-mail"
+              />
+            </div>
+            <div class="col-12 form-group">
+              <label class="control-label"><strong>Senha</strong></label>
+              <input
+                autocomplete="off"
+                type="password"
+                class="form-control"
+                [class.has-error]="
+                  frmFormulario.get('senha').invalid && submited
+                "
+                formControlName="senha"
+                required
+                placeholder="Senha"
+              />
+            </div>
+            <div class="col-12 form-group">
+              <button
+                type="submit"
+                class="btn btn-danger btn-block btn-cardapio"
+              >
+                Entrar
+              </button>
+              <a class="btn btn-default btn-block btn-cardapio" routerLink="/"
+                >Cancelar</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</section>

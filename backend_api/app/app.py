@@ -25,7 +25,7 @@ controller_categorias = ControllerCategorias()
 controller_produtos = ControllerProdutos()
 
 #
-# /estabelecimentos/
+# /estabelecimentos/    '
 #
 
 @app.route('/estabelecimentos/', methods=['POST'])
@@ -101,7 +101,10 @@ def get_validar_login(login):
 
 @app.route('/categorias/', methods=['POST'])
 def post_categorias():
-    return controller_categorias.post_categorias(request)
+    try:
+        return controller_categorias.post_categorias(request)
+    except Exception as e:
+        return str(e) , 400
 
 
 @app.route('/categorias/<id_categoria>', methods=['DELETE'])
@@ -119,11 +122,12 @@ def get_categorias():
     return controller_categorias.get_categorias()
 
 
-@app.route('/categorias/<id_categoria>', methods=['PUT'])
-def put_categorias(id_categoria):
-    return controller_categorias.put_categorias(id_categoria, request)
-
-
+@app.route('/categorias/', methods=['PUT'])
+def put_categorias():
+    try:
+        return controller_categorias.put_categorias(request)
+    except Exception as e:
+        return str(e) , 400
 #
 # /produtos/
 #
@@ -142,12 +146,19 @@ def delete_produtos(id_produto):
 def get_produtos_id(id_produto):
     return controller_produtos.get_produtos_id(id_produto)
 
+@app.route('/produtos-estabelecimento/<id_estabelecimento>', methods=['GET'])
+def get_produtos_estabelecimento_id(id_estabelecimento):
+    return controller_produtos.get_produtos_estabelecimento_id(id_estabelecimento)
+
 
 @app.route('/produtos/', methods=['GET'])
 def get_produtos():
     return controller_produtos.get_produtos()
 
 
-@app.route('/produtos/<id_produto>', methods=['PUT'])
-def put_produtos(id_produto):
-    return controller_produtos.put_produtos(id_produto, request)
+@app.route('/produtos/', methods=['PUT'])
+def put_produtos():
+    try:
+        return controller_produtos.put_produtos(request)
+    except Exception as e:
+        return str(e) , 400

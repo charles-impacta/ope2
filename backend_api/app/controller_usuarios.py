@@ -71,7 +71,7 @@ class ControllerUsuarios:
 
     def _criar_usuario(self, login, senha, id_estabelecimento):
         estabelecimento = Estabelecimento.query.filter_by(id=id_estabelecimento).first()
-        novo_usuario = Usuario(login=login, senha=senha, estabelecimento=estabelecimento)
+        novo_usuario = Usuario(login=login, senha=senha, estabelecimento=estabelecimento, isAdmin=False)
         db.session.add(novo_usuario)
         db.session.commit()
         return novo_usuario
@@ -113,4 +113,5 @@ class ControllerUsuarios:
             return jsonify(
             id = usuario.id,
             login = usuario.login,
-            id_estabelecimento = usuario.estabelecimento.id)
+            id_estabelecimento = usuario.estabelecimento.id,
+            isAdmin = usuario.isAdmin)

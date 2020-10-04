@@ -1,0 +1,30 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-red">
+  <section class="container-fluid">
+    <a class="navbar-brand" href="#">Cardápio na Web</a>
+    <a class="btn btn-warning pull-right" routerLink="/login" >Entrar</a>
+  </section>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent"></div>
+</nav>
+
+<section class="container content">
+  <div class="row">
+    <div class="col-sm text-center">
+      <figure class="figure-logo">
+        <figcaption>
+          <h3 class="title-site">{{ title }}</h3>
+        </figcaption>
+        <img src="./assets/images/Food-PNG-Clipart.png" />
+      </figure>
+    </div>
+  </div>
+  <footer class="row text-center">
+    <div class="col-xs col-sm-4">
+      <button type="button" class="btn btn-danger btn-lg btn-block">
+        Conheça Nosso Cardápio
+      </button>
+      <a  class="btn btn-secondary btn-lg btn-block" routerLinkActive="router-link-active" routerLink="./novo-estabelecimento">
+        Cadastre-se
+      </a>
+    </div>
+  </footer>
+</section>

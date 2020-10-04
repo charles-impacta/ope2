@@ -1,0 +1,145 @@
+/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Lato&family=Oswald&family=Roboto&display=swap");
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background: url("./assets/images/back-ground.jpg") repeat;
+}
+
+.title-site {
+  color: #fff;
+}
+
+.bg-red {
+  background: rgb(197, 9, 61) !important;
+  color: #fff !important;
+}
+
+.navbar-light .navbar-nav li .nav-link {
+  color: #fff !important;
+}
+
+.navbar-light .navbar-brand {
+  font-family: "Oleo Script Swash Caps", cursive !important;
+  color: #fff;
+}
+
+.section-cadastro {
+  margin-top: 25px;
+  display: flex;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 5px 5px;
+  padding: 25px;
+}
+.section-main {
+  margin-top: 25px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 5px 5px;
+  padding: 25px;
+}
+
+.section-cadastro h2 {
+  font-family: "Oleo Script Swash Caps", cursive !important;
+  font-size: 25px;
+}
+
+.logo-cadastro {
+  display: inline-block;
+}
+
+.logo-cadastro img {
+  width: 90px;
+}
+
+.btn-cardapio {
+  font-family: "Oleo Script Swash Caps", cursive !important;
+  font-size: 25px;
+}
+
+.btn-rounded {
+  border-radius: 218px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  font-size: 0.9em;
+  width: 33px;
+  justify-content: center;
+  padding: 6px 10px;
+}
+
+.btn-cardapio-default {
+  background-color: #ececec !important;
+}
+
+@media (max-width: 360px) {
+  .title-site {
+    font-size: 40px !important;
+    white-space: nowrap;
+    margin-top: 10px !important;
+  }
+
+  .figure-logo img {
+    width: 75%;
+  }
+
+  .btn-cardapio {
+    font-family: "Oleo Script Swash Caps", cursive !important;
+    font-size: 15px !important;
+  }
+
+  .section-cadastro h2 {
+    font-family: "Oleo Script Swash Caps", cursive !important;
+    font-size: 19px;
+  }
+}
+
+.has-error {
+  border: 1px solid #a94442;
+  background-color: #f3b3b3 !important;
+  box-shadow: -1px 0px 17px #a94442;
+  color: #a94442 !important;
+}
+.has-error::before {
+  color: #a94442 !important;
+}
+
+.table-cardapio-web {
+  font-family: "ABeeZee", sans-serif;
+  font-size: 0.9em;
+}
+
+.table-cardapio-web thead {
+  background-color: #c5093d !important;
+  color: #fff;
+  border: none;
+}
+
+.table-cardapio-web thead th {
+  font-weight: 400 !important;
+  padding: 10px 15px 8px 15px;
+  border: none;
+  font-size: 1.2em !important;
+}
+
+.table-cardapio-web tbody td {
+  background-color: #fff;
+  font-weight: 400 !important;
+  padding: 5px;
+  border-right: 1px solid rgba(255, 0, 10, 0.05);
+  padding: 8px 15px 2px 15px;
+}
+
+.table-cardapio-web tbody td.actions {
+  width: 10% !important;
+}
+
+.footer-info {
+  font-weight: 500 !important;
+  font-family: "ABeeZee", sans-serif;
+}
+
+.header-title h2 {
+  font-family: "ABeeZee", sans-serif !important;
+  font-weight: 600 !important;
+}
