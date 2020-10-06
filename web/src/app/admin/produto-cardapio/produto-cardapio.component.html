@@ -16,7 +16,7 @@
     </div>
   </header>
   <section>
-    <div class="row">
+    <div class="row" *ngIf="authUserService.getSession().isAdmin">
       <div class="col-12 form-group">
         <label class="control-label">Estabelecimentos</label>
         <select class="form-control" [(ngModel)]="estabelecimentoSelected" (change)="onChange()">

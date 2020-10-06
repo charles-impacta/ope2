@@ -1,9 +1,9 @@
 .title-site {
   font-family: "Oleo Script Swash Caps", cursive !important;
-  font-size: 95px;
+  font-size: 45px;
   color: #fff;
   text-shadow: 4px 5px #000;
-  margin-top: 150px;
+  margin-top: 70px;
 }
 
 .figure-logo figcaption {
@@ -29,12 +29,12 @@ ul.navbar-nav li a {
   font-size: 1.25em;
 }
 
-.navbar-brand {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+.navbar-collapse {
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  margin-top:5px;
   padding: 10px 0px;
-  width: 100%;
-  align-content: center;
-  text-align: center;
-  margin: 0 0 10px 0;
+  // width: 100%;
+  // align-content: center;
+  // text-align: center;
 }
 

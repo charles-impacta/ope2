@@ -1,19 +1,19 @@
 <header class="header-cardapio container-fluid">
-  <span class="title-cardapio"><i class="fas fa-utensils"></i>Conheça Nossa Variedade de Pratos</span>
+  <span class="title-cardapio"
+    ><i class="fas fa-utensils"></i>Conheça Nossa Variedade de Pratos</span
+  >
 </header>
 <section class="container section-main">
-  <header class="header-title-group text-center">{{descricaoGrupo}}</header>
+  <header class="header-title-group text-center">{{ descricaoGrupo }}</header>
   <article *ngFor="let item of listProduto" class="produto-cardapio">
     <header class="title">
       <div class="row">
-        <div class="col-9">{{item.nome}}</div>
-        <div class="col-2 text-center">{{item.preco | currency : 'R$'}}</div>
+        <div class="col-9">{{ item.nome }}</div>
+        <div class="col-2 text-center">{{ item.preco | currency: "R$" }}</div>
       </div>
     </header>
-    <content class="description">{{item.descricao}}</content>
+    <content class="description">{{ item.descricao }}</content>
   </article>
-
+  <app-food-not-found *ngIf="listProduto.length == 0"></app-food-not-found>
 </section>
-<footer class="">
-
-</footer>
+<footer class=""></footer>
