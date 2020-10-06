@@ -17,7 +17,8 @@ class ControllerUsuarios:
     def delete_usuarios(self, id_usuario):
         self._deletar_usuario(id_usuario)
         return jsonify(
-            mensagem = u'Usuário deletado com sucesso.'
+            mensagem = u'Usuário deletado com sucesso.' 
+            
         )
 
     def get_usuarios_id(self, id_usuario):
@@ -25,7 +26,7 @@ class ControllerUsuarios:
         return jsonify(
             id = usuario.id,
             login = usuario.login,
-            id_estabelecimento = usuario.estabelecimento.id
+            id_estabelecimento = usuario.estabelecimento.id 
         )
 
     def get_validar_usuario_login(self, login):
