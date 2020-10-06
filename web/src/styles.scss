@@ -6,7 +6,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  background: url("./assets/images/back-ground.jpg") repeat;
+  background: url("./assets/images/back-ground.jpg") repeat fixed;
 }
 
 .title-site {
@@ -22,9 +22,9 @@ body {
   color: #fff !important;
 }
 
-.navbar-light .navbar-brand {
+.navbar-brand {
   font-family: "Oleo Script Swash Caps", cursive !important;
-  color: #fff;
+  color: #fff !important;
 }
 
 .section-cadastro {
@@ -94,6 +94,37 @@ body {
   }
 }
 
+@media (min-width: 768px) {
+  .navbar.fixed-left {
+    bottom: 0;
+    width: 232px;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+  }
+
+  .navbar.fixed-left .navbar-collapse {
+    flex-grow: 0;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .navbar-expand-md .navbar-collapse {
+    display: flex !important;
+    flex-basis: auto;
+  }
+
+  .navbar.fixed-left .navbar-collapse .navbar-nav {
+    flex-direction: column;
+    width: 100%;
+  }
+}
+
+@media (min-width: 768px) {
+  .navbar.fixed-left {
+    right: auto;
+  }
+}
+
 .has-error {
   border: 1px solid #a94442;
   background-color: #f3b3b3 !important;
@@ -142,4 +173,12 @@ body {
 .header-title h2 {
   font-family: "ABeeZee", sans-serif !important;
   font-weight: 600 !important;
+}
+
+.navbar.fixed-left {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1030;
 }

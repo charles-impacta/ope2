@@ -1,12 +1,15 @@
 from .model import db, Categoria
 from flask import jsonify
-
+import json 
+from str2bool import str2bool
 
 class ControllerCategorias():
 
     def post_categorias(self, request):
         nome = request.json['nome']
-        novo_categoria = self._criar_categoria(nome)
+        print(request.json)
+        inativo = str2bool(str(request.json['inativo']).lower())
+        novo_categoria = self._criar_categoria(nome=nome, inativo=inativo)
         return jsonify(
             mensagem='Categoria criada com sucesso.',
             id=novo_categoria.id
@@ -22,11 +25,22 @@ class ControllerCategorias():
         categoria = self._buscar_categoria(id_categoria)
         return jsonify(
             id=categoria.id,
-            nome=categoria.nome
-        )
+            nome=categoria.nome,
+            inativo=categoria.inativo)
 
     def get_categorias(self):
         categorias = self._listar_todos_categorias()
+        json_response = []
+        for categoria in categorias:
+            json_response.append({
+                'id': categoria.id,
+                'nome': categoria.nome,
+                'inativo' : categoria.inativo
+            })
+        return jsonify(json_response)
+
+    def get_categorias_ativas(self):
+        categorias = self._listar_todos_categorias_ativas()
         json_response = []
         for categoria in categorias:
             json_response.append({
@@ -36,7 +50,7 @@ class ControllerCategorias():
         return jsonify(json_response)
 
     def put_categorias(self, request):
-
+        print(request.json)
         categoria = self._buscar_categoria(request.json["id"])
 
         if categoria == None:
@@ -46,6 +60,7 @@ class ControllerCategorias():
             raise Exception("Já existe uma categoria com o nome informado!")
 
         categoria.nome = request.json['nome']
+        categoria.inativo = str2bool(str(request.json['inativo']).lower())
         categoria = self._atualizar_categoria(categoria)
         return jsonify(
             id=categoria.id,
@@ -56,12 +71,12 @@ class ControllerCategorias():
     # métodos internos
     #
 
-    def _criar_categoria(self, nome):
+    def _criar_categoria(self, nome,inativo):
 
         if Categoria.query.filter_by(nome=nome).count() > 0:
             raise Exception("Já existe uma categoria com o nome informado")
 
-        novo_categoria = Categoria(nome=nome)
+        novo_categoria = Categoria(nome=nome, inativo=inativo)
         db.session.add(novo_categoria)
         db.session.commit()
         return novo_categoria
@@ -81,3 +96,6 @@ class ControllerCategorias():
 
     def _listar_todos_categorias(self):
         return Categoria.query.all()
+
+    def _listar_todos_categorias_ativas(self):
+        return Categoria.query.filter_by(inativo=False)

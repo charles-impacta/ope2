@@ -5,7 +5,11 @@
         <h2><i class="fas fa-utensils"></i> Produtos</h2>
       </div>
       <div class="col-xs-6 col-sm-1 text-right">
-        <a class="btn btn-rounded btn-success" routerLink="./new" title="Adicionar Novo Produto">
+        <a
+          class="btn btn-rounded btn-success"
+          routerLink="./new"
+          title="Adicionar Novo Produto"
+        >
           <i class="fa fa-plus"></i>
         </a>
       </div>
@@ -13,17 +17,32 @@
   </header>
   <section>
     <div class="row">
+      <div class="col-12 form-group">
+        <label class="control-label">Estabelecimentos</label>
+        <select class="form-control" [(ngModel)]="estabelecimentoSelected" (change)="onChange()">
+          <option value="0">Todos</option>
+          <option *ngFor="let item of listEstabelecimento" [value]="item.id">
+            {{ item.nome }}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
       <div class="col-12">
         <table class="table table-cardapio-web">
           <thead>
             <tr>
               <th>Produto</th>
+              <th>Situação</th>
               <th class="text-center">Ações</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let item of listProduto">
               <td>{{ item.nome }}</td>
+              <td>
+                <app-status-flag [isInativo]="!item.inativo"></app-status-flag>
+              </td>
               <td class="actions text-center">
                 <a
                   class="btn btn-cardapio-default btn-rounded"
@@ -31,9 +50,6 @@
                   routerLink="./edit/{{ item.id }}"
                   [state]="{ data: item }"
                   ><i class="fa fa-pencil"></i
-                ></a>
-                <a class="btn btn-danger btn-rounded" title="Excluir Produto">
-                  <i class="fa fa-close"></i
                 ></a>
               </td>
             </tr>

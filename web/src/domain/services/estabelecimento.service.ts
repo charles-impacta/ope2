@@ -22,7 +22,7 @@ export class EstabelecimentoService {
     return this.httpClient.get<Estabelecimento[]>(`${Constants.hostApi}/estabelecimentos/`);
   }
 
-  get(estabelecimentoId: number) :Observable<Estabelecimento> {
+  get(estabelecimentoId: any) :Observable<Estabelecimento> {
     return this.httpClient.get<Estabelecimento>(`${Constants.hostApi}/estabelecimentos/${estabelecimentoId}`);
   }
 

@@ -1,1 +1,54 @@
-<p>cardapio works!</p>
+<nav class="navbar navbar-expand-md navbar-dark bg-red fixed-left">
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarsMobile"
+    aria-controls="navbarsExampleDefault"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" href="#">Cardápio na Web </a>
+
+  <div class="collapse navbar-collapse" [id]="navbarsExampleDefault">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          href="#"
+          role="button"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          Lojas <span class="caret"></span>
+        </a>
+        <ul>
+          <li *ngFor="let item of listEstabelecimentos" data-toggle="collapse" data-target="#navbarsMobile">
+            <a
+               routerLink="../cardapio/item-cardapio-estabelecimento/{{ item.id }}"
+              class="nav-link"
+              >{{ item.nome }}</a
+            >
+          </li>
+        </ul>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link">Categorias</a>
+        <ul>
+          <li *ngFor="let item of listCategorias"  data-toggle="collapse" data-target="#navbarsMobile">
+            <a
+            routerLink="../cardapio/item-cardapio-categoria/{{ item.id }}"
+            class="nav-link"
+            >{{ item.nome }}</a
+          >
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>
+<section class="container-fluid">
+  <router-outlet></router-outlet>
+</section>

@@ -33,7 +33,8 @@ export class ProdutoCardapioEditComponent extends AppBaseComponent implements On
       modo_de_preparo: ['', Validators.required],
       preco: [0, [Validators.required, Validators.min(0.01)]],
       categoria_id: ['', Validators.required],
-      estabelecimento_id: [this.authUserService.getSession().id_estabelecimento]
+      estabelecimento_id: [this.authUserService.getSession().id_estabelecimento],
+      inativo:[false]
     });
 
     const id = this.activeRoute.snapshot.paramMap.get("id");

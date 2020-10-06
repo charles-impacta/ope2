@@ -18,3 +18,19 @@ export class GuardService implements CanActivate {
     }
   }
 }
+@Injectable({
+  providedIn: 'root'
+})
+export class GuardServiceAdmin implements CanActivate {
+
+  constructor(private authUserService: AuthUserService, private router: Router) { }
+
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
+
+    if(this.authUserService.isAuthenticated && this.authUserService.getSession().isAdmin ){
+      return true;
+    }else{
+      this.router.navigate(['/admin']);
+    }
+  }
+}

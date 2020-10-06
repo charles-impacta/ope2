@@ -1,0 +1,3 @@
+<span class="text-message" [class.text-danger]="!isInativo" [class.text-success]="isInativo">
+  <i class="fa fa-circle"></i><span *ngIf="isInativo"> {{ textTrue }}</span><span *ngIf="!isInativo"> {{ textFalse }}</span></span
+>

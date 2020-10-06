@@ -10,6 +10,7 @@ class Usuario(db.Model):
     login = db.Column(db.String(32), unique=True, index=True)
     senha = db.Column(db.String(64))
     isAdmin = db.Column(db.Boolean)
+    inativo = db.Column(db.Boolean)
     estabelecimento_id = db.Column(db.Integer, db.ForeignKey('estabelecimentos.id'))
 
     def __repr__(self):
@@ -22,6 +23,7 @@ class Estabelecimento(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(64), unique=True, index=True)
     cnpj = db.Column(db.String(14), unique=True)
+    inativo = db.Column(db.Boolean)
 
     usuarios = db.relationship('Usuario', backref='estabelecimento')
     produtos = db.relationship('Produto', backref='estabelecimento')
@@ -39,6 +41,7 @@ class Produto(db.Model):
     ingredientes = db.Column(db.String(512))
     modo_de_preparo = db.Column(db.String(512))
     preco = db.Column(db.Float)
+    inativo = db.Column(db.Boolean)
 
     estabelecimento_id = db.Column(db.Integer, db.ForeignKey('estabelecimentos.id'))
     categoria_id = db.Column(db.Integer, db.ForeignKey('categorias.id'))
@@ -52,7 +55,8 @@ class Categoria(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(64), unique=True, index=True)
-
+    inativo = db.Column(db.Boolean)
+    
     produtos = db.relationship('Produto', backref='categoria')
 
     def __repr__(self):

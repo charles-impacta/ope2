@@ -35,7 +35,7 @@ export class LoginComponent extends AppBaseComponent implements OnInit {
 
       this.usuarioService.login(this.frmFormulario.value).subscribe((res) => {
         this.authUserService.startSession(res);
-        this.router.navigate(['/admin']);
+        this.router.navigate(['/admin/estabelecimento']);
       }, (httpError: HttpErrorResponse) => {
         this.toastService.warning(httpError.error);
       });

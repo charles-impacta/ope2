@@ -1,6 +1,6 @@
 import { EstabelecimentoNewComponent } from './admin/estabelecimento/estabelecimento-new/estabelecimento-new.component';
 import { EstabelecimentoEditComponent } from './admin/estabelecimento/estabelecimento-edit/estabelecimento-edit.component';
-import { GuardService } from './shared/guard.service';
+import { GuardService, GuardServiceAdmin } from './shared/guard.service';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AdminComponent } from './admin/admin.component';
@@ -14,6 +14,8 @@ import { ProdutoCardapioComponent } from './admin/produto-cardapio/produto-carda
 import { CadastroEstabelecimentoComponent } from './cadastro-estabelecimento/cadastro-estabelecimento.component';
 import { DefaultComponent } from './default/default.component';
 import { LoginComponent } from './login/login.component';
+import { CardapioComponent } from './cardapio/cardapio.component';
+import { ItemCardapioComponent } from './cardapio/item-cardapio/item-cardapio.component';
 
 
 const routes: Routes = [
@@ -23,6 +25,15 @@ const routes: Routes = [
   {
     component: CadastroEstabelecimentoComponent,
     path: 'novo-estabelecimento'
+  }, {
+    path: 'cardapio',
+    component: CardapioComponent,
+    children: [
+      { path: 'item-cardapio-estabelecimento/:estabelecidomento_id', component: ItemCardapioComponent },
+      { path: 'item-cardapio-categoria/:categoria_id', component: ItemCardapioComponent },
+      { path: 'item-cardapio', component: ItemCardapioComponent },
+    ],
+    runGuardsAndResolvers: 'always'
   },
   { path: 'login', component: LoginComponent },
   {
@@ -31,13 +42,14 @@ const routes: Routes = [
     canActivate: [GuardService],
     children: [{
       path: 'categorias',
-      component: CategoriaComponent
+      component: CategoriaComponent,
+      canActivate: [GuardServiceAdmin]
     }, {
       path: 'categorias/new',
       component: CategoriaNewComponent
     }, {
       path: 'categorias/edit/:id',
-      component: CategoriaEditComponent
+      component: CategoriaEditComponent,
     }, {
       path: 'produto-cardapio',
       component: ProdutoCardapioComponent
@@ -62,7 +74,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule {

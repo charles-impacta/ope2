@@ -20,7 +20,8 @@ export class CategoriaEditComponent extends AppBaseComponent implements OnInit {
 
     this.frmFormulario = this.fb.group({
       id: [0, [Validators.required, Validators.min(1)]],
-      nome: ['', Validators.required]
+      nome: ['', Validators.required],
+      inativo:[false]
     });
 
     const id = this.activeRoute.snapshot.paramMap.get("id");

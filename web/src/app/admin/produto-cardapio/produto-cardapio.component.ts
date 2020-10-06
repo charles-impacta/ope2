@@ -1,8 +1,10 @@
+import { EstabelecimentoService } from './../../../domain/services/estabelecimento.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Injector, OnInit } from '@angular/core';
 import { AppBaseComponent } from 'src/app/shared/app-base-component';
 import { ItemCardapio } from 'src/domain/models/item-cardapio.model';
 import { ItemCardapioService } from 'src/domain/services/item-cardapio.service';
+import { Estabelecimento } from 'src/domain/models/estabelecimento.model';
 
 @Component({
   selector: 'app-produto-cardapio',
@@ -12,13 +14,28 @@ import { ItemCardapioService } from 'src/domain/services/item-cardapio.service';
 export class ProdutoCardapioComponent extends AppBaseComponent implements OnInit {
 
   listProduto: ItemCardapio[] = [];
-  constructor(injector: Injector, private itemCardapioService: ItemCardapioService) {
+  listEstabelecimento: Estabelecimento[] = [];
+  estabelecimentoSelected: number = 0;
+
+  constructor(injector: Injector, private itemCardapioService: ItemCardapioService, private estabelecimentoService: EstabelecimentoService) {
     super(injector);
   }
 
   ngOnInit(): void {
 
+
+
+
+
     if (this.authUserService.getSession().isAdmin) {
+
+      this.estabelecimentoService.list().subscribe((data) => {
+        this.listEstabelecimento = data;
+      }, (httpError: HttpErrorResponse) => {
+        this.toastService.error(httpError.error);
+      });
+
+
       this.itemCardapioService.list().subscribe((data) => {
         this.listProduto = data;
       }, (httpError: HttpErrorResponse) => {
@@ -34,6 +51,25 @@ export class ProdutoCardapioComponent extends AppBaseComponent implements OnInit
 
     }
 
+  }
+
+  onChange() {
+
+    if (this.estabelecimentoSelected > 0) {
+
+      this.itemCardapioService.getByEstabelecimento(this.estabelecimentoSelected).subscribe((data) => {
+        this.listProduto = data;
+      }, (httpError: HttpErrorResponse) => {
+        this.toastService.error(httpError.error);
+      });
+
+    }else{
+      this.itemCardapioService.list().subscribe((data) => {
+        this.listProduto = data;
+      }, (httpError: HttpErrorResponse) => {
+        this.toastService.error(httpError.error);
+      });
+    }
   }
 
 }
