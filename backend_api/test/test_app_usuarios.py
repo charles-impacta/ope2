@@ -134,6 +134,29 @@ class TestAppUsuarios(unittest.TestCase):
         # assert
         assert response.status_code == 400
 
+    def test_validar_login_usuario_existente(self):
+        # arrange
+        json_data = self._test_data()
+        usuario = self._cria_usuario(json_data)
+        url = '/usuarios/validar-login/' + json_data['login']
+
+        # act
+        response = self.client.get(url)
+
+        # assert
+        assert response.status_code == 400
+
+    def test_validar_login_usuario_novo(self):
+        # arrange
+        url = '/usuarios/validar-login/' + 'login_de_usuario_nao_cadastrado'
+
+        # act
+        response = self.client.get(url)
+
+        # assert
+        assert response.status_code == 200
+        assert response.json == 'ok'
+
     #
     # metodos de suporte
     #
