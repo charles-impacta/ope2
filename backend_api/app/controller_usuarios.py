@@ -51,6 +51,7 @@ class ControllerUsuarios:
         login = request.json['login']
         senha = request.json['senha']
         id_estabelecimento = request.json['id_estabelecimento']
+        
         usuario = self._atualizar_usuario(id_usuario, login, senha, id_estabelecimento)
         return jsonify(
             id = usuario.id,

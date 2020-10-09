@@ -15,15 +15,37 @@ export class ItemCardapioService {
     return this.httpClient.get<ItemCardapio[]>(`${Constants.hostApi}/produtos`);
   }
 
+  listAtivos(): Observable<ItemCardapio[]> {
+    return this.httpClient.get<ItemCardapio[]>(`${Constants.hostApi}/produtos-ativos`);
+  }
+
   get(itemCardapioId: any): Observable<ItemCardapio> {
 
     return this.httpClient.get<ItemCardapio>(`${Constants.hostApi}/produtos/${itemCardapioId}`);
   }
 
+  getByCategoria(categoriaId: any): Observable<ItemCardapio[]> {
+
+    return this.httpClient.get<ItemCardapio[]>(`${Constants.hostApi}/produtos-categoria/${categoriaId}`);
+  }
+
+  getByCategoriaAtivo(categoriaId: any): Observable<ItemCardapio[]> {
+
+    return this.httpClient.get<ItemCardapio[]>(`${Constants.hostApi}/produtos-categoria-ativo/${categoriaId}`);
+  }
+
+
+
   getByEstabelecimento(estabelecimentoId: any): Observable<ItemCardapio[]> {
 
     return this.httpClient.get<ItemCardapio[]>(`${Constants.hostApi}/produtos-estabelecimento/${estabelecimentoId}`);
   }
+
+  getByEstabelecimentoAtivo(estabelecimentoId: any): Observable<ItemCardapio[]> {
+
+    return this.httpClient.get<ItemCardapio[]>(`${Constants.hostApi}/produtos-estabelecimento-ativo/${estabelecimentoId}`);
+  }
+
 
   post(model: ItemCardapio) {
 

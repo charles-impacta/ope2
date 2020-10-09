@@ -5,3 +5,6 @@ __pycache__/
 **/data.sqlite
 **/.DS_Store
 **/node_modules/**
+**/dist/**
+**/lib/**
+**/Scripts/**

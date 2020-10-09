@@ -7,4 +7,5 @@ export class ItemCardapio {
   preco: number;
   categoria_id:number;
   estabelecimento_id:number;
+  inativo:boolean;
 }

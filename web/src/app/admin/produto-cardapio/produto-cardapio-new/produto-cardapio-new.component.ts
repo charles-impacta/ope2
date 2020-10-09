@@ -31,7 +31,8 @@ export class ProdutoCardapioNewComponent extends AppBaseComponent implements OnI
       modo_de_preparo: ['', Validators.required],
       preco: [0, [Validators.required, Validators.min(0.01)]],
       categoria_id: ['', Validators.required],
-      estabelecimento_id: [this.authUserService.getSession().id_estabelecimento]
+      estabelecimento_id: [this.authUserService.getSession().id_estabelecimento],
+      inativo : [false]
     });
   }
 
@@ -52,6 +53,8 @@ export class ProdutoCardapioNewComponent extends AppBaseComponent implements OnI
       this.itemCardapioService.post(this.frmFormulario.value).subscribe((res) => {
         this.toastService.success("Produto cadastrado com sucesso!");
         this.router.navigate(['./admin/produto-cardapio']);
+      },(httpError: HttpErrorResponse)=>{
+        this.toastService.error(httpError.error);
       });
 
     } else {

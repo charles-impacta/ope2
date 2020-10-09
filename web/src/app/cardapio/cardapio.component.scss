@@ -1,0 +1,40 @@
+.title-site {
+  font-family: "Oleo Script Swash Caps", cursive !important;
+  font-size: 45px;
+  color: #fff;
+  text-shadow: 4px 5px #000;
+  margin-top: 70px;
+}
+
+.figure-logo figcaption {
+  padding: 50px 0px;
+}
+
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 30px;
+}
+
+ul.navbar-nav li {
+  list-style: none;
+  color: #fff !important;
+}
+
+ul.navbar-nav li a {
+  color: #fff !important;
+  font-family: "Oleo Script Swash Caps", cursive !important;
+  font-weight: 200;
+  font-size: 1.25em;
+}
+
+.navbar-collapse {
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  margin-top:5px;
+  padding: 10px 0px;
+  // width: 100%;
+  // align-content: center;
+  // text-align: center;
+}
+

@@ -1,0 +1,53 @@
+
+figure{
+  padding:50px;
+}
+
+figure img{
+  width:250px;
+}
+
+.info-not-found{
+  padding: 15px 30px;
+  position: relative;
+  font-family: "Oleo Script Swash Caps", cursive !important;
+  font-size: 35px;
+  color: #c5093d !important;
+  display: block;
+}
+
+.info-not-found-detail{
+  padding: 15px 30px;
+  position: relative;
+  font-family: "Oleo Script Swash Caps", cursive !important;
+  font-size: 17px;
+  color: #000 !important;
+  display: block;
+}
+
+
+@media (max-width: 360px) {
+
+
+figure{
+  padding:10px;
+}
+
+  figure img{
+    width:190px;
+  }
+
+  .info-not-found{
+    padding: 15px 0px;
+    font-size: 20px;
+  }
+
+  .info-not-found-detail{
+    padding: 15px 0px;
+    position: relative;
+    font-family: "Oleo Script Swash Caps", cursive !important;
+    font-size: 17px;
+    color: #000 !important;
+    display: block;
+  }
+}

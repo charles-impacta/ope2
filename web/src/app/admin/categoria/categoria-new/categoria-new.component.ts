@@ -20,7 +20,8 @@ export class CategoriaNewComponent extends AppBaseComponent implements OnInit {
     super(injector);
 
     this.frmFormulario = this.fb.group({
-      nome: ['', Validators.required]
+      nome: ['', Validators.required],
+      inativo : [false]
     });
   }
 

@@ -18,6 +18,7 @@ import { IConfig, NgxMaskModule } from 'ngx-mask';
 import { HttpClientModule } from '@angular/common/http';
 import { CurrencyMaskModule } from 'ngx-currency-mask';
 import { CurrencyMaskConfig, CURRENCY_MASK_CONFIG } from 'ngx-currency-mask/src/currency-mask.config';
+import { ItemCardapioComponent } from './cardapio/item-cardapio/item-cardapio.component';
 
 
 const maskConfig: Partial<IConfig> = {
@@ -41,7 +42,8 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     CardapioComponent,
     CadastroEstabelecimentoComponent,
     DefaultComponent,
-    LoginComponent
+    LoginComponent,
+    ItemCardapioComponent
   ],
   imports: [
     HttpClientModule,

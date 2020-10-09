@@ -5,7 +5,7 @@
     </header>
     <section>
       <div class="row">
-        <div class="col-12 form-group">
+        <div class="col-10 form-group">
           <label class="control-label">Nome</label>
           <input
             type="text"
@@ -16,6 +16,13 @@
             formControlName="nome"
             placeholder="Informe o Nome da Categoria"
           />
+        </div>
+        <div class="col-2 form-group">
+          <label class="control-label">Situação</label>
+          <select class="form-control" formControlName="inativo">
+            <option [value]="false">Ativo</option>
+            <option [value]="true">Inativo</option>
+          </select>
         </div>
       </div>
     </section>
