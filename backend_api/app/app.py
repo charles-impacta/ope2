@@ -24,7 +24,7 @@ controller_categorias = ControllerCategorias()
 controller_produtos = ControllerProdutos()
 
 #
-# /estabelecimentos/    '
+# /estabelecimentos/
 #
 
 @app.route('/estabelecimentos/', methods=['POST'])
