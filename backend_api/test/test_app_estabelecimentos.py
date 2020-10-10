@@ -1,11 +1,11 @@
-import unittest, os, sys
+import unittest, os, sys, random, string
 
 sys.path.insert(1, os.path.join(sys.path[0], '..'))
 
 from app import app
 
 
-class TestApp(unittest.TestCase):
+class TestAppEstabelecimentos(unittest.TestCase):
     #
     # setUp e tearDown
     #
@@ -52,10 +52,7 @@ class TestApp(unittest.TestCase):
         json_data_1 = self._test_data()
         id_estabelecimento_1 = self._cria_estabelecimento(json_data_1).json['id']
 
-        json_data_2 = {
-            'nome': 'estabelecimento teste_',
-            'cnpj': '1234567890123_'
-        }
+        json_data_2 = self._test_data()
         id_estabelecimento_2 = self._cria_estabelecimento(json_data_2).json['id']     
         
         # act
@@ -77,10 +74,7 @@ class TestApp(unittest.TestCase):
         # arrange
         id_estabelecimento = self._cria_estabelecimento(self._test_data()).json['id']
 
-        novo_json_data = {
-            'nome': 'estabelecimento teste_',
-            'cnpj': '1234567890123_'
-        }
+        novo_json_data = self._test_data()
 
         # act
         self.client.put('/estabelecimentos/' + str(id_estabelecimento), json=novo_json_data)
@@ -90,6 +84,17 @@ class TestApp(unittest.TestCase):
         assert response.json['id'] == id_estabelecimento
         assert response.json['nome'] == novo_json_data['nome']
         assert response.json['cnpj'] == novo_json_data['cnpj']
+
+    def test_erro_cnpj_duplicado(self):
+        # arranje
+        data = self._test_data()
+        self._cria_estabelecimento(data).json['id']
+
+        # act
+        resultado = self.client.post('/estabelecimentos/', json=data)
+
+        # assert
+        assert resultado.status_code == 400
 
     #
     # metodos de suporte
@@ -102,6 +107,6 @@ class TestApp(unittest.TestCase):
 
     def _test_data(self):
         return {
-            'nome': 'estabelecimento teste',
-            'cnpj': '12345678901234'
+            'nome': ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(64)),
+            'cnpj': ''.join(random.choice(string.digits) for _ in range(14))
         }

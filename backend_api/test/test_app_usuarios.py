@@ -1,4 +1,4 @@
-import unittest, os, sys
+import unittest, os, sys, random, string
 
 sys.path.insert(1, os.path.join(sys.path[0], '..'))
 
@@ -13,10 +13,11 @@ class TestAppUsuarios(unittest.TestCase):
     @classmethod
     def setUpClass(self):
         self.client = app.app.test_client()
-        self.id_estabelecimento = self.client.post('/estabelecimentos/', json={
-            'nome': 'nome teste',
-            'cnpj': '12345678901234'
-        }).json['id']
+        estabelecimento = self.client.post('/estabelecimentos/', json={
+            'nome': ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(64)),
+            'cnpj': ''.join(random.choice(string.digits) for _ in range(14))
+        })
+        self.id_estabelecimento = estabelecimento.json['id']
 
     @classmethod
     def tearDownClass(self):
@@ -133,6 +134,29 @@ class TestAppUsuarios(unittest.TestCase):
         # assert
         assert response.status_code == 400
 
+    def test_validar_login_usuario_existente(self):
+        # arrange
+        json_data = self._test_data()
+        usuario = self._cria_usuario(json_data)
+        url = '/usuarios/validar-login/' + json_data['login']
+
+        # act
+        response = self.client.get(url)
+
+        # assert
+        assert response.status_code == 400
+
+    def test_validar_login_usuario_novo(self):
+        # arrange
+        url = '/usuarios/validar-login/' + 'login_de_usuario_nao_cadastrado'
+
+        # act
+        response = self.client.get(url)
+
+        # assert
+        assert response.status_code == 200
+        assert response.json == 'ok'
+
     #
     # metodos de suporte
     #
@@ -144,7 +168,7 @@ class TestAppUsuarios(unittest.TestCase):
 
     def _test_data(self):
         return {
-            'login': 'login teste',
-            'senha': 'senha teste',
+            'login': ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(32)),
+            'senha': ''.join(random.choice(string.digits) for _ in range(64)),
             'id_estabelecimento': self.id_estabelecimento
         }

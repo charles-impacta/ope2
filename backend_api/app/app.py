@@ -24,7 +24,7 @@ controller_categorias = ControllerCategorias()
 controller_produtos = ControllerProdutos()
 
 #
-# /estabelecimentos/    '
+# /estabelecimentos/
 #
 
 @app.route('/estabelecimentos/', methods=['POST'])
@@ -72,13 +72,16 @@ def delete_usuarios(id_usuario):
 def get_usuarios_id(id_usuario):
     return controller_usuarios.get_usuarios_id(id_usuario)
 
+
 @app.route('/usuarios/', methods=['GET'])
 def get_usuarios():
     return controller_usuarios.get_usuarios()
 
+
 @app.route('/usuarios/<id_usuario>', methods=['PUT'])
 def put_usuarios(id_usuario):
     return controller_usuarios.put_usuarios(id_usuario, request)
+
 
 @app.route('/usuarios/login', methods=['POST'])
 def post_usuarios_login():
@@ -86,6 +89,7 @@ def post_usuarios_login():
         return controller_usuarios.post_usuarios_login(request)
     except Exception as e:
         return str(e) , 400
+
 
 @app.route('/usuarios/validar-login/<login>', methods=['GET'])
 def get_validar_login(login):
@@ -110,12 +114,14 @@ def post_categorias():
 def delete_categorias(id_categoria):
     return controller_categorias.delete_categorias(id_categoria)
 
+
 @app.route('/categorias/', methods=['PUT'])
 def put_categorias():
     try:
         return controller_categorias.put_categorias(request)
     except Exception as e:
         return str(e) , 400
+
 
 @app.route('/categorias/<id_categoria>', methods=['GET'])
 def get_categorias_id(id_categoria):
@@ -125,6 +131,7 @@ def get_categorias_id(id_categoria):
 @app.route('/categorias/', methods=['GET'])
 def get_categorias():
     return controller_categorias.get_categorias()
+
 
 @app.route('/categorias-ativas/', methods=['GET'])
 def get_categorias_ativas():
@@ -142,12 +149,14 @@ def post_produtos():
     except Exception as e:  
         return str(e), 400
 
+
 @app.route('/produtos/', methods=['PUT'])
 def put_produtos():
     try:
         return controller_produtos.put_produtos(request)
     except Exception as e:
         return str(e), 400
+
 
 @app.route('/produtos/<id_produto>', methods=['DELETE'])
 def delete_produtos(id_produto):
@@ -158,29 +167,32 @@ def delete_produtos(id_produto):
 def get_produtos_id(id_produto):
     return controller_produtos.get_produtos_id(id_produto)
 
+
 @app.route('/produtos-estabelecimento/<id_estabelecimento>', methods=['GET'])
 def get_produtos_estabelecimento_id(id_estabelecimento):
     return controller_produtos.get_produtos_estabelecimento_id(id_estabelecimento)
+
 
 @app.route('/produtos-estabelecimento-ativo/<id_estabelecimento>', methods=['GET'])
 def get_produtos_estabelecimento_id_ativo(id_estabelecimento):
     return controller_produtos.get_produtos_estabelecimento_id_ativo(id_estabelecimento)
 
+
 @app.route('/produtos-categoria-ativo/<id_categoria>', methods=['GET'])
 def get_produtos_categoria_id_ativo(id_categoria):
     return controller_produtos.get_produtos_categoria_id_ativo(id_categoria)
+
 
 @app.route('/produtos-categoria/<id_categoria>', methods=['GET'])
 def get_produtos_categoria_id(id_categoria):
     return controller_produtos.get_produtos_categoria_id(id_categoria)
 
+
 @app.route('/produtos/', methods=['GET'])
 def get_produtos():
     return controller_produtos.get_produtos()
 
+
 @app.route('/produtos-ativos/', methods=['GET'])
 def get_produtos_ativos():
     return controller_produtos.get_produtos_ativos()    
-
-
-
