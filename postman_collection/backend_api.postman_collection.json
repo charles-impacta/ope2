@@ -1,0 +1,627 @@
+{
+	"info": {
+		"_postman_id": "191c34d8-e0bc-4946-b47d-103827e06f27",
+		"name": "backend_api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/estabelecimentos/",
+			"item": [
+				{
+					"name": "GET /estabelecimentos/",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{flask_host}}/estabelecimentos/",
+							"host": [
+								"{{flask_host}}"
+							],
+							"path": [
+								"estabelecimentos",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /estabelecimentos/<id>",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{flask_host}}/estabelecimentos/1",
+							"host": [
+								"{{flask_host}}"
+							],
+							"path": [
+								"estabelecimentos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST /estabelecimentos/",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"<nome do estabelecimento>\",\r\n    \"cnpj\": \"<cnpj do estabelecimento>\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{flask_host}}/estabelecimentos/",
+							"host": [
+								"{{flask_host}}"
+							],
+							"path": [
+								"estabelecimentos",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /estabelecimentos/<id>",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"<novo nome do estabelecimento>\",\r\n    \"cnpj\": \"<novo cnpj do estabelecimento>\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{flask_host}}/estabelecimentos/1",
+							"host": [
+								"{{flask_host}}"
+							],
+							"path": [
+								"estabelecimentos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /estabelecimentos/<id>",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{flask_host}}/estabelecimentos/2",
+							"host": [
+								"{{flask_host}}"
+							],
+							"path": [
+								"estabelecimentos",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "/usuarios/",
+			"item": [
+				{
+					"name": "GET /usuarios/",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{flask_host}}/usuarios/",
+							"host": [
+								"{{flask_host}}"
+							],
+							"path": [
+								"usuarios",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /usuarios/<id>",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{flask_host}}/usuarios/1",
+							"host": [
+								"{{flask_host}}"
+							],
+							"path": [
+								"usuarios",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST /usuarios/",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"login\": \"<login do usuario>\",\r\n    \"senha\": \"<senha do usuario>\",\r\n    \"id_estabelecimento\": <id do estabelecimento do usuario>\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{flask_host}}/usuarios/",
+							"host": [
+								"{{flask_host}}"
+							],
+							"path": [
+								"usuarios",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /usuarios/<id>",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"login\": \"<novo login do usuario>\",\r\n    \"senha\": \"<nova senha do usuario>\",\r\n    \"id_estabelecimento\": <novo id do estabelecimento do usuario>\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{flask_host}}/usuarios/1",
+							"host": [
+								"{{flask_host}}"
+							],
+							"path": [
+								"usuarios",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /usuarios/<id>",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{flask_host}}/usuarios/2",
+							"host": [
+								"{{flask_host}}"
+							],
+							"path": [
+								"usuarios",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST /usuarios/login/",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"login\": \"<novo login do usuario>\",\r\n    \"senha\": \"<nova senha do usuario>\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{flask_host}}/usuarios/login",
+							"host": [
+								"{{flask_host}}"
+							],
+							"path": [
+								"usuarios",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /usuarios/validar-login/<login>",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{flask_host}}/usuarios/validar-login/<novo login do usuario>",
+							"host": [
+								"{{flask_host}}"
+							],
+							"path": [
+								"usuarios",
+								"validar-login",
+								"<novo login do usuario>"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "/categorias/",
+			"item": [
+				{
+					"name": "GET /categorias/",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{flask_host}}/categorias/",
+							"host": [
+								"{{flask_host}}"
+							],
+							"path": [
+								"categorias",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /categorias-ativas/",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{flask_host}}/categorias-ativas/",
+							"host": [
+								"{{flask_host}}"
+							],
+							"path": [
+								"categorias-ativas",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /categorias/<id>",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{flask_host}}/categorias/1",
+							"host": [
+								"{{flask_host}}"
+							],
+							"path": [
+								"categorias",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST /categorias/",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"<nome da categoria>\",\r\n    \"inativo\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{flask_host}}/categorias/",
+							"host": [
+								"{{flask_host}}"
+							],
+							"path": [
+								"categorias",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /categorias/",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"<novo nome da categoria>\",\r\n    \"id\": 1,\r\n    \"inativo\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{flask_host}}/categorias/",
+							"host": [
+								"{{flask_host}}"
+							],
+							"path": [
+								"categorias",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /categorias/<id>",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{flask_host}}/categorias/2",
+							"host": [
+								"{{flask_host}}"
+							],
+							"path": [
+								"categorias",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "/produtos/",
+			"item": [
+				{
+					"name": "GET /produtos/",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{flask_host}}/produtos/",
+							"host": [
+								"{{flask_host}}"
+							],
+							"path": [
+								"produtos",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /produtos-ativos/",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{flask_host}}/produtos-ativos/",
+							"host": [
+								"{{flask_host}}"
+							],
+							"path": [
+								"produtos-ativos",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /produtos/<id>",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{flask_host}}/produtos/1",
+							"host": [
+								"{{flask_host}}"
+							],
+							"path": [
+								"produtos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /produtos-estabelecimento/<id_estabelecimento>",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{flask_host}}/produtos-estabelecimento/1",
+							"host": [
+								"{{flask_host}}"
+							],
+							"path": [
+								"produtos-estabelecimento",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /produtos-estabelecimento-ativo/<id_estabelecimento>",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{flask_host}}/produtos-estabelecimento-ativo/1",
+							"host": [
+								"{{flask_host}}"
+							],
+							"path": [
+								"produtos-estabelecimento-ativo",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /produtos-categoria/<id_categoria>",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{flask_host}}/produtos-categoria/1",
+							"host": [
+								"{{flask_host}}"
+							],
+							"path": [
+								"produtos-categoria",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET /produtos-categoria-ativo/<id_categoria>",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{flask_host}}/produtos-categoria-ativo/1",
+							"host": [
+								"{{flask_host}}"
+							],
+							"path": [
+								"produtos-categoria-ativo",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST /produtos/",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"<nome do produto>\",\r\n    \"descricao\": \"<descricao do produto>\",\r\n    \"ingredientes\": \"<ingredientes do produto>\",\r\n    \"modo_de_preparo\": \"<modo de preparo do produto>\",\r\n    \"preco\": <preco do produto>,\r\n    \"estabelecimento_id\": <id do estabelecimento do produto>,\r\n    \"categoria_id\": <id da categoria do produto>,\r\n    \"inativo\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{flask_host}}/produtos/",
+							"host": [
+								"{{flask_host}}"
+							],
+							"path": [
+								"produtos",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT /produtos/<id>",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"nome\": \"<novo nome do produto>\",\r\n    \"descricao\": \"<nova descricao do produto>\",\r\n    \"ingredientes\": \"<novos ingredientes do produto>\",\r\n    \"modo_de_preparo\": \"<novo modo de preparo do produto>\",\r\n    \"preco\": <preco do produto>,\r\n    \"estabelecimento_id\": <id do estabelecimento>,\r\n    \"categoria_id\": <id da categoria>,\r\n    \"inativo\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{flask_host}}/produtos/",
+							"host": [
+								"{{flask_host}}"
+							],
+							"path": [
+								"produtos",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /produtos/<id>",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{flask_host}}/produtos/2",
+							"host": [
+								"{{flask_host}}"
+							],
+							"path": [
+								"produtos",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"variable": [
+		{
+			"id": "6dbbd5ce-a209-49fc-8d81-c825ed545345",
+			"key": "flask_host",
+			"value": "http://api.impactados2020.live:5000"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
