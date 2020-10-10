@@ -5,7 +5,7 @@ sys.path.insert(1, os.path.join(sys.path[0], '..'))
 from app import app
 
 
-class TestApp(unittest.TestCase):
+class TestAppEstabelecimentos(unittest.TestCase):
     #
     # setUp e tearDown
     #

@@ -7,7 +7,6 @@ class ControllerCategorias():
 
     def post_categorias(self, request):
         nome = request.json['nome']
-        print(request.json)
         inativo = str2bool(str(request.json['inativo']).lower())
         novo_categoria = self._criar_categoria(nome=nome, inativo=inativo)
         return jsonify(
@@ -50,7 +49,6 @@ class ControllerCategorias():
         return jsonify(json_response)
 
     def put_categorias(self, request):
-        print(request.json)
         categoria = self._buscar_categoria(request.json["id"])
 
         if categoria == None:
@@ -71,7 +69,7 @@ class ControllerCategorias():
     # métodos internos
     #
 
-    def _criar_categoria(self, nome,inativo):
+    def _criar_categoria(self, nome, inativo):
 
         if Categoria.query.filter_by(nome=nome).count() > 0:
             raise Exception("Já existe uma categoria com o nome informado")
