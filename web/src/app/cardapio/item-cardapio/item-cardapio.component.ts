@@ -49,6 +49,8 @@ export class ItemCardapioComponent extends AppBaseComponent implements OnInit, O
         this.toastService.error(error);
       });
     } else {
+
+
       this.itemCardapioService.listAtivos().subscribe((data)=>{
         this.listProduto = data;
       },(error)=>{

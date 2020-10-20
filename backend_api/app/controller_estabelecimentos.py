@@ -56,7 +56,10 @@ class ControllerEstabelecimentos():
         if Estabelecimento.query.filter_by(cnpj=cnpj).count() > 0:
             raise Exception("Já existe um estabelecimento com CNPJ informado!")
 
-        novo_estabelecimento = Estabelecimento(nome=nome, cnpj=cnpj) 
+        if Estabelecimento.query.filter_by(nome=nome).count() > 0:
+            raise Exception("Já existe um estabelecimento com nome informado!")
+
+        novo_estabelecimento = Estabelecimento(nome=nome, cnpj=cnpj,inativo=False) 
         db.session.add(novo_estabelecimento)
         db.session.commit()
         return novo_estabelecimento
