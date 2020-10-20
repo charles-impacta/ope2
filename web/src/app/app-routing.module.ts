@@ -42,8 +42,7 @@ const routes: Routes = [
     canActivate: [GuardService],
     children: [{
       path: 'categorias',
-      component: CategoriaComponent,
-      canActivate: [GuardServiceAdmin]
+      component: CategoriaComponent
     }, {
       path: 'categorias/new',
       component: CategoriaNewComponent

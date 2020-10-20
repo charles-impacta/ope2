@@ -12,6 +12,7 @@ export abstract class AppBaseComponent {
   router: Router;
   toastService: ToastrService;
   authUserService: AuthUserService;
+  public static autoContrast = false;
 
   constructor(injector: Injector) {
 
@@ -20,6 +21,9 @@ export abstract class AppBaseComponent {
     this.router = injector.get(Router);
     this.toastService = injector.get(ToastrService);
     this.authUserService = injector.get(AuthUserService);
+
+
+
   }
 
   onExit() {
@@ -27,6 +31,14 @@ export abstract class AppBaseComponent {
     this.authUserService.closeSession();
     this.router.navigate(['/']);
 
-   }
+  }
+
+  static onSetAutoContrast() {
+    this.autoContrast = !this.autoContrast;
+  }
+
+   getContrast() : boolean {
+    return AppBaseComponent.autoContrast;
+  }
 
 }

@@ -72,7 +72,7 @@ class ControllerUsuarios:
 
     def _criar_usuario(self, login, senha, id_estabelecimento):
         estabelecimento = Estabelecimento.query.filter_by(id=id_estabelecimento).first()
-        novo_usuario = Usuario(login=login, senha=senha, estabelecimento=estabelecimento, isAdmin=False)
+        novo_usuario = Usuario(login=login, senha=senha, estabelecimento=estabelecimento, isAdmin=False, inativo=False)
         db.session.add(novo_usuario)
         db.session.commit()
         return novo_usuario
