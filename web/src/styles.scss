@@ -21,31 +21,6 @@ body {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .title-site {
   color: #fff;
 }
@@ -109,7 +84,11 @@ body {
   background-color: #ececec !important;
 }
 
-@media (max-width: 360px) {
+@media (max-width: 420px) {
+
+  .btn-toggle-monitor{
+    display:none !important;
+  }
   .home-title-site {
     font-size: 40px !important;
     white-space: nowrap;
@@ -128,6 +107,44 @@ body {
   .section-cadastro h2 {
     font-family: "Oleo Script Swash Caps", cursive !important;
     font-size: 19px;
+  }
+
+  div[vw-access-button]{
+    display: none !important;
+  }
+
+  .btn-toggle-monitor{
+    display: none;
+  }
+
+  .header-cardapio-title {
+    font-family: "Oleo Script Swash Caps", cursive !important;
+    font-size: 1.5em;
+  }
+
+  .header-cardapio {
+    color: #fff !important;
+    font-size: 1.5em;
+    padding: 25px 0px 0px 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .item-cardapio-container {
+    padding: 15px 10px;
+  }
+
+  .produto-cardapio .title {
+    font-size: 15px;
+  }
+
+  .produto-cardapio .description {
+    font-size: 0.8em;
+  }
+
+  .contrast-adapter .produto-cardapio .product-name {
+    color: #000 !important;
   }
 }
 
@@ -312,46 +329,6 @@ body {
   display: block;
 }
 
-@media (max-width: 360px) {
-
-  div[vw-access-button]{
-    display: none !important;
-  }
-
-  .btn-toggle-monitor{
-    display: none;
-  }
-
-  .header-cardapio-title {
-    font-family: "Oleo Script Swash Caps", cursive !important;
-    font-size: 1.5em;
-  }
-
-  .header-cardapio {
-    color: #fff !important;
-    font-size: 1.5em;
-    padding: 25px 0px 0px 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .item-cardapio-container {
-    padding: 15px 10px;
-  }
-
-  .produto-cardapio .title {
-    font-size: 15px;
-  }
-
-  .produto-cardapio .description {
-    font-size: 0.8em;
-  }
-
-  .contrast-adapter .produto-cardapio .product-name {
-    color: #000 !important;
-  }
-}
 
 .contrast-adapter .product-name,
 .contrast-adapter .product-price,
