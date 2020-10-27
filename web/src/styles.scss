@@ -9,7 +9,6 @@ body {
   background: url("./assets/images/back-ground.jpg") repeat-y;
 }
 
-
 /*Default Style*/
 
 .home-title-site {
@@ -19,7 +18,6 @@ body {
   text-shadow: 2px 3px #000;
   margin-top: 150px;
 }
-
 
 .title-site {
   color: #fff;
@@ -82,101 +80,6 @@ body {
 
 .btn-cardapio-default {
   background-color: #ececec !important;
-}
-
-@media (max-width: 420px) {
-
-  .btn-toggle-monitor{
-    display:none !important;
-  }
-  .home-title-site {
-    font-size: 40px !important;
-    white-space: nowrap;
-    margin-top: 10px !important;
-  }
-
-  .figure-logo img {
-    width: 75%;
-  }
-
-  .btn-cardapio {
-    font-family: "Oleo Script Swash Caps", cursive !important;
-    font-size: 15px !important;
-  }
-
-  .section-cadastro h2 {
-    font-family: "Oleo Script Swash Caps", cursive !important;
-    font-size: 19px;
-  }
-
-  div[vw-access-button]{
-    display: none !important;
-  }
-
-  .btn-toggle-monitor{
-    display: none;
-  }
-
-  .header-cardapio-title {
-    font-family: "Oleo Script Swash Caps", cursive !important;
-    font-size: 1.5em;
-  }
-
-  .header-cardapio {
-    color: #fff !important;
-    font-size: 1.5em;
-    padding: 25px 0px 0px 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .item-cardapio-container {
-    padding: 15px 10px;
-  }
-
-  .produto-cardapio .title {
-    font-size: 15px;
-  }
-
-  .produto-cardapio .description {
-    font-size: 0.8em;
-  }
-
-  .contrast-adapter .produto-cardapio .product-name {
-    color: #000 !important;
-  }
-}
-
-@media (min-width: 768px) {
-  .navbar.fixed-left {
-    bottom: 0;
-    width: 232px;
-    flex-flow: column nowrap;
-    align-items: flex-start;
-  }
-
-  .navbar.fixed-left .navbar-collapse {
-    flex-grow: 0;
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .navbar-expand-md .navbar-collapse {
-    display: flex !important;
-    flex-basis: auto;
-  }
-
-  .navbar.fixed-left .navbar-collapse .navbar-nav {
-    flex-direction: column;
-    width: 100%;
-  }
-}
-
-@media (min-width: 768px) {
-  .navbar.fixed-left {
-    right: auto;
-  }
 }
 
 .has-error {
@@ -263,7 +166,6 @@ body {
   display: flex;
   border-radius: 13px;
   margin-top: 16px;
-
 }
 
 [vp] .vpw-settings-btn {
@@ -329,7 +231,6 @@ body {
   display: block;
 }
 
-
 .contrast-adapter .product-name,
 .contrast-adapter .product-price,
 .contrast-adapter .product-description,
@@ -337,15 +238,14 @@ body {
 .contrast-adapter .home-title-site,
 .contrast-adapter .navbar-nav li a,
 .contrast-adapter .btn-danger,
-.contrast-adapter .vw-text
-{
+.contrast-adapter .vw-text {
   color: yellow !important;
 }
 
-.contrast-adapter .vw-text,.contrast-adapter .vw-text-active
-{
+.contrast-adapter .vw-text,
+.contrast-adapter .vw-text-active {
   color: yellow !important;
-  background-color:rgba(255,255,255,0.2)
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 .contrast-adapter .title-cardapio {
@@ -371,4 +271,112 @@ body {
 
 body.contrast-adapter {
   background: #fff !important;
+}
+
+@media (min-width: 770px) and(max-width:1370px) {
+  .container-settings {
+    padding-left: 250px;
+  }
+}
+
+@media (min-width: 768px) {
+  .navbar.fixed-left {
+    bottom: 0;
+    width: 232px;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+  }
+
+  .navbar.fixed-left .navbar-collapse {
+    flex-grow: 0;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .navbar-expand-md .navbar-collapse {
+    display: flex !important;
+    flex-basis: auto;
+  }
+
+  .navbar.fixed-left .navbar-collapse .navbar-nav {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .navbar.fixed-left {
+    right: auto;
+  }
+}
+
+@media (max-width: 420px) {
+
+  .header-cardapio {
+    margin-top: 49px;
+}
+  .btn-toggle-monitor {
+    display: none !important;
+  }
+  .home-title-site {
+    font-size: 40px !important;
+    white-space: nowrap;
+    margin-top: 10px !important;
+  }
+
+  .figure-logo img {
+    width: 75%;
+  }
+
+  .btn-cardapio {
+    font-family: "Oleo Script Swash Caps", cursive !important;
+    font-size: 15px !important;
+  }
+
+  .section-cadastro h2 {
+    font-family: "Oleo Script Swash Caps", cursive !important;
+    font-size: 19px;
+  }
+
+  div[vw-access-button] {
+    display: none !important;
+  }
+
+  .btn-toggle-monitor {
+    display: none;
+  }
+
+  .header-cardapio-title {
+    font-family: "Oleo Script Swash Caps", cursive !important;
+    font-size: 1.5em;
+  }
+
+  .header-cardapio {
+    color: #fff !important;
+    font-size: 1.5em;
+    padding: 25px 0px 0px 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .item-cardapio-container {
+    padding: 15px 10px;
+  }
+
+  .item-cardapio-container .product-name,
+  .item-cardapio-container .product-price {
+    color: rgb(197, 9, 61);
+    font-size: 1.3em;
+  }
+
+  .produto-cardapio .title {
+    font-size: 15px;
+  }
+
+  .produto-cardapio .description {
+    font-size: 0.8em;
+  }
+
+  .contrast-adapter .produto-cardapio .product-name {
+    color: #000 !important;
+  }
 }
