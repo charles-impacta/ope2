@@ -18,21 +18,10 @@ export class EstabelecimentoComponent extends AppBaseComponent implements OnInit
   }
 
   ngOnInit(): void {
+    this.listEstabelecimento = [];
 
-    if (this.authUserService.getSession().isAdmin) {
-
-      this.estabelecimentoService.list().subscribe((data) => {
-        this.listEstabelecimento = data;
-      })
-    } else {
-
-      this.listEstabelecimento = [];
-
-      this.estabelecimentoService.get(this.authUserService.getSession().id_estabelecimento).subscribe((data) => {
-        this.listEstabelecimento.push(data);
-      })
-    }
-
+    this.estabelecimentoService.get(this.authUserService.getSession().id_estabelecimento).subscribe((data) => {
+      this.listEstabelecimento.push(data);
+    });
   }
-
 }

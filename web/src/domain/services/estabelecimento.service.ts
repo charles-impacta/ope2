@@ -17,13 +17,12 @@ export class EstabelecimentoService {
     return this.httpClient.post<EstabelecimentoResult>(`${Constants.hostApi}/estabelecimentos/`, estabelecimento, { headers: { 'Content-Type': 'application/json' } });
 
   }
-
-  list(): Observable<Estabelecimento[]> {
-    return this.httpClient.get<Estabelecimento[]>(`${Constants.hostApi}/estabelecimentos/`);
-  }
-
   get(estabelecimentoId: any) :Observable<Estabelecimento> {
     return this.httpClient.get<Estabelecimento>(`${Constants.hostApi}/estabelecimentos/${estabelecimentoId}`);
+  }
+
+  hasEstabelecimento() : any{
+    return this.httpClient.get<Estabelecimento>(`${Constants.hostApi}/estabelecimentos/has-estabelecimento`);
   }
 
 

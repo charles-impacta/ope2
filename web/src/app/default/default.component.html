@@ -4,9 +4,6 @@
     <button class="navbar-toggler btn-toggle" type="button">
       <i class="fas fa-adjust"></i>
     </button>
-    <button class="navbar-toggler btn-toggle-libras" type="button">
-      <i class="fas fa-sign-language"></i>
-    </button>
     <a class="btn btn-warning pull-right" routerLink="/login" >Entrar</a>
   </section>
   <div class="collapse navbar-collapse" id="navbarSupportedContent"></div>
@@ -25,9 +22,9 @@
   <footer class="row text-center">
     <div class="col-xs col-sm-4">
       <a type="button" class="btn btn-danger btn-lg btn-block" href='./cardapio/item-cardapio'>
-        Conheça Nosso Cardápio
+        Conheça nosso cardápio
       </a>
-      <a  class="btn btn-secondary btn-lg btn-block" routerLinkActive="router-link-active" href="./novo-estabelecimento">
+      <a *ngIf="!hasEstabelecimento"  class="btn btn-secondary btn-lg btn-block" routerLinkActive="router-link-active" href="./novo-estabelecimento">
         Cadastre-se
       </a>
     </div>

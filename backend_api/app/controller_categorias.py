@@ -57,7 +57,7 @@ class ControllerCategorias():
             raise Exception("Nenhuma categoria encontrada!")
 
         if Categoria.query.filter(Categoria.nome == request.json["nome"] , Categoria.id != request.json["id"]).count() > 0:
-            raise Exception("Já existe uma categoria com o nome informado!")
+            raise Exception("Já existe uma categoria com a descrição informado!")
 
         categoria.nome = request.json['nome']
         categoria.inativo = str2bool(str(request.json['inativo']).lower())
@@ -74,7 +74,7 @@ class ControllerCategorias():
     def _criar_categoria(self, nome,inativo):
 
         if Categoria.query.filter_by(nome=nome).count() > 0:
-            raise Exception("Já existe uma categoria com o nome informado")
+            raise Exception("Já existe uma categoria com a descrição informada")
 
         novo_categoria = Categoria(nome=nome, inativo=inativo)
         db.session.add(novo_categoria)

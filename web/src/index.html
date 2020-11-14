@@ -12,20 +12,12 @@
   <link href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/bf6f639754.js" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="./assets/libras.js"></script>
   <script>
 
     $(()=>{
-
-      new window.VLibras.Widget('https://vlibras.gov.br/app');
-
       $('.btn-toggle,.btn-toggle-monitor ').click(()=>{
         $('body').toggleClass('contrast-adapter');
       });
-
-      $('.btn-toggle-libras').click(()=>{
-        $('img.access-button').click();
-      })
     })
 
 

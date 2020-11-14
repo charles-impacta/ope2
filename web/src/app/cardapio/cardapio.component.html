@@ -5,11 +5,8 @@
 >
   <a class="navbar-brand" href="#">Cardápio na Web </a>
 
-  <button class="navbar-toggler btn-toggle" type="button">
+  <button class="navbar-toggler btn-toggle" type="button" title="Ativar recurso de contraste">
     <i class="fas fa-adjust"></i>
-  </button>
-  <button class="navbar-toggler btn-toggle-libras" type="button">
-    <i class="fas fa-sign-language"></i>
   </button>
   <button
     class="navbar-toggler"
@@ -25,35 +22,6 @@
 
   <div class="collapse navbar-collapse" [id]="navbarsExampleDefault">
     <ul class="navbar-nav">
-      <li class="nav-item">
-        <a
-          class="nav-link"
-          href="#"
-          role="button"
-          aria-haspopup="true"
-          aria-expanded="false"
-        >
-          Lojas <span class="caret"></span>
-        </a>
-        <ul>
-          <li
-            *ngFor="let item of listEstabelecimentos"
-            data-toggle="collapse"
-            data-target="#navbarsMobile"
-          >
-            <a
-              routerLinkActive="router-link-active"
-              routerLink="../cardapio/item-cardapio-estabelecimento/{{
-                item.id
-              }}"
-              href="#"
-              class="nav-link"
-            >
-              {{ item.nome }}</a
-            >
-          </li>
-        </ul>
-      </li>
       <li class="nav-item">
         <a class="nav-link">Categorias</a>
         <ul>

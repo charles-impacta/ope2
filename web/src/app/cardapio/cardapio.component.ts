@@ -18,11 +18,6 @@ export class CardapioComponent extends AppBaseComponent implements OnInit {
   constructor(injector: Injector, private estabelecimentoService: EstabelecimentoService, private categoriaService: CategoriaService) {
 
     super(injector);
-    this.estabelecimentoService.list().subscribe((data) => {
-      this.listEstabelecimentos = data;
-    }, (error) => {
-      this.toastService.error(error);
-    })
 
     this.categoriaService.listActive().subscribe((data) => {
       this.listCategorias = data;

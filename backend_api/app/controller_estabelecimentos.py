@@ -47,6 +47,9 @@ class ControllerEstabelecimentos():
             cnpj = estabelecimento.cnpj
         )
 
+    def has_estabelecimento(self):
+        return self._has_estabelecimento()
+
     #
     # métodos internos
     #
@@ -63,6 +66,12 @@ class ControllerEstabelecimentos():
         db.session.add(novo_estabelecimento)
         db.session.commit()
         return novo_estabelecimento
+
+    def _has_estabelecimento(self): 
+        if Estabelecimento.query.count() > 0:
+            return jsonify(True)
+        else:
+            return jsonify(False)
 
     def _deletar_estabelecimento(self, id):
         estabelecimento = self._buscar_estabelecimento(id)

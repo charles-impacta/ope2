@@ -259,7 +259,7 @@ body {
 
 .contrast-adapter .item-cardapio-container {
   background-color: #000;
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid #FFF;
 }
 
 .contrast-adapter .section-main {
@@ -268,6 +268,13 @@ body {
   border-radius: 5px 5px;
   padding: 25px;
 }
+
+.contrast-adapter .navbar-brand {
+  color : yellow !important;
+}
+
+
+
 
 body.contrast-adapter {
   background: #fff !important;
