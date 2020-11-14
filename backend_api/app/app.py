@@ -49,6 +49,10 @@ def get_estabelecimentos_id(id_estabelecimento):
 def get_estabelecimentos():
     return controller_estabelecimentos.get_estabelecimentos()
 
+@app.route('/estabelecimentos/has-estabelecimento', methods=['GET'])
+def has_estabelecimentos():
+    return controller_estabelecimentos.has_estabelecimento()
+
 
 @app.route('/estabelecimentos/<id_estabelecimento>', methods=['PUT'])
 def put_estabelecimentos(id_estabelecimento):

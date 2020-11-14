@@ -23,17 +23,7 @@ export class ProdutoCardapioComponent extends AppBaseComponent implements OnInit
 
   ngOnInit(): void {
 
-
-
-
-
     if (this.authUserService.getSession().isAdmin) {
-
-      this.estabelecimentoService.list().subscribe((data) => {
-        this.listEstabelecimento = data;
-      }, (httpError: HttpErrorResponse) => {
-        this.toastService.error(httpError.error);
-      });
 
 
       this.itemCardapioService.list().subscribe((data) => {
