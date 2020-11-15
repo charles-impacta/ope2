@@ -1,12 +1,12 @@
 <form [formGroup]="frmFormulario" (ngSubmit)="onSubmit()">
   <section class="container section-main">
     <header class="header-title">
-      <h2>Cadastro de Produto</h2>
+      <h2>Novo produto</h2>
     </header>
     <section>
       <div class="row">
         <div class="col-xs-12 col-sm-6 form-group">
-          <label class="control-label">Nome</label>
+          <label class="control-label">Nome *</label>
           <input
             type="text"
             class="form-control"
@@ -14,11 +14,11 @@
               frmFormulario.get('nome').invalid && submited
             "
             formControlName="nome"
-            placeholder="Descricao"
+            placeholder="Informe o nome do produto."
           />
         </div>
         <div class="col-xs-12 col-sm-2 form-group">
-          <label class="control-label">Categoria</label>
+          <label class="control-label">Categoria *</label>
           <select
             class="form-control"
             formControlName="categoria_id"
@@ -33,7 +33,7 @@
           </select>
         </div>
         <div class="col-xs-12 col-sm-2 form-group">
-          <label class="control-label">Preço</label>
+          <label class="control-label">Preço *</label>
           <input
             type="text"
             class="form-control"
@@ -46,25 +46,25 @@
           />
         </div>
         <div class="col-2 form-group">
-          <label class="control-label">Situação</label>
+          <label class="control-label">Situação *</label>
           <select class="form-control" formControlName="inativo">
             <option [value]="false">Ativo</option>
             <option [value]="true">Inativo</option>
           </select>
         </div>
         <div class="col-12 form-group">
-          <label class="control-label">Descricao</label>
+          <label class="control-label">Descrição *</label>
           <input
             type="text"
             class="form-control"
             [class.has-error]="frmFormulario.get('descricao').invalid && submited"
             formControlName="descricao"
             required
-            placeholder="Descricao"
+            placeholder="Informe a descrição do produto."
           />
         </div>
         <div class="col-12 form-group">
-          <label class="control-label">Ingredientes</label>
+          <label class="control-label">Ingredientes *</label>
           <textarea
           rows="5"
           class="form-control"
@@ -76,7 +76,7 @@
         </div>
 
         <div class="col-12 form-group">
-          <label class="control-label">Modo de Prepáro</label>
+          <label class="control-label">Modo de preparo *</label>
           <textarea
             rows="5"
             class="form-control"
@@ -99,15 +99,18 @@
       </div>
     </section>
     <footer class="row">
-      <div class="col-12 form-group">
+      <div class="col-sm-6 col-xs-12 form-group">
         <button type="submit" class="btn btn-danger">Salvar</button>
         &nbsp;
         <a
-          class="btn btn-default btn-cardapio-default"
+          class="btn btn-default"
           routerLink="/admin/produto-cardapio"
         >
           Cancelar
         </a>
+      </div>
+      <div class="col-sm-6 col-xs-12 text-right control-label">
+        * Campo obrigatório
       </div>
     </footer>
   </section>
