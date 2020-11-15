@@ -200,3 +200,16 @@ def get_produtos():
 @app.route('/produtos-ativos/', methods=['GET'])
 def get_produtos_ativos():
     return controller_produtos.get_produtos_ativos()    
+
+#
+# /
+#
+
+@app.route('/')
+def index():
+    return """\
+    <h1>Backend do Cardápio na Web</h1>\
+    <p>Acesse a documentação da API
+        <a href='https://github.com/charles-impacta/ope2/tree/master/backend_api#documenta%C3%A7%C3%A3o-da-api'>neste link</a>.\
+    </p>\
+    """
