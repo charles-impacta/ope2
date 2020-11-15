@@ -16,7 +16,7 @@ body {
   font-size: 95px !important;
   color: #fff;
   text-shadow: 2px 3px #000;
-  margin-top: 150px;
+  margin-top: 100px !important;
 }
 
 .title-site {
@@ -29,12 +29,12 @@ body {
 }
 
 .navbar-light .navbar-nav li .nav-link {
-  color: #fff !important;
+  color: #fff;
 }
 
 .navbar-brand {
   font-family: "Oleo Script Swash Caps", cursive !important;
-  color: #fff !important;
+  color: #fff;
 }
 
 .section-cadastro {
@@ -73,9 +73,7 @@ body {
   border-radius: 218px;
   border: 1px solid rgba(255, 255, 255, 0.5);
   font-size: 0.9em;
-  width: 33px;
   justify-content: center;
-  padding: 6px 10px;
 }
 
 .btn-cardapio-default {
@@ -231,7 +229,26 @@ body {
   display: block;
 }
 
+.info-not-found{
+  padding: 15px 30px;
+  position: relative;
+  font-family: "Oleo Script Swash Caps", cursive !important;
+  font-size: 35px;
+  color: #c5093d ;
+  display: block;
+}
+
+.info-not-found-detail{
+  padding: 15px 30px;
+  position: relative;
+  font-family: "Oleo Script Swash Caps", cursive !important;
+  font-size: 17px;
+  color: #000 !important;
+  display: block;
+}
+
 .contrast-adapter .product-name,
+.contrast-adapter .section-cadastro h2,
 .contrast-adapter .product-price,
 .contrast-adapter .product-description,
 .contrast-adapter .container-group-title,
@@ -240,6 +257,17 @@ body {
 .contrast-adapter .btn-danger,
 .contrast-adapter .vw-text {
   color: yellow !important;
+}
+
+.contrast-adapter .control-label{
+  color: yellow;
+}
+
+.contrast-adapter .home-title-site {
+  font-family: "Oleo Script Swash Caps", cursive !important;
+  font-size: 95px !important;
+  color: #000 !important;
+  text-shadow: 2px 3px yellow;
 }
 
 .contrast-adapter .vw-text,
@@ -255,12 +283,19 @@ body {
 .contrast-adapter .btn-danger,
 .contrast-adapter .bg-red {
   background-color: #000;
+  border-color: yellow !important;
 }
 
 .contrast-adapter .item-cardapio-container {
   background-color: #000;
   border-bottom: 1px solid #FFF;
 }
+
+.contrast-adapter .section-cadastro{
+  background-color: #000;
+}
+
+
 
 .contrast-adapter .section-main {
   margin-top: 25px;
@@ -269,12 +304,44 @@ body {
   padding: 25px;
 }
 
+.contrast-adapter .btn-danger{
+  color: #000 !important;
+  background-color:yellow;
+}
+
+.contrast-adapter .btn-default{
+  color: yellow !important;
+}
+
 .contrast-adapter .navbar-brand {
   color : yellow !important;
 }
 
+.contrast-adapter .info-not-found{
+  color : yellow !important;
+}
 
+.contrast-adapter .info-not-found-detail{
+  color : yellow !important;
+}
 
+.contrast-adapter .header-title h2{
+  color : yellow !important;
+}
+
+.contrast-adapter .footer-info{
+  color:yellow !important;
+}
+
+.contrast-adapter > .navbar-light .navbar-nav li .nav-link{
+  color:yellow !important;
+}
+
+.contrast-adapter .table-cardapio-web thead{
+  color : #000 !important;
+  background-color:yellow !important;
+  font-weight:700 !important;
+}
 
 body.contrast-adapter {
   background: #fff !important;
@@ -323,10 +390,11 @@ body.contrast-adapter {
   .btn-toggle-monitor {
     display: none !important;
   }
+
   .home-title-site {
     font-size: 40px !important;
     white-space: nowrap;
-    margin-top: 10px !important;
+    margin-top: 100px !important;
   }
 
   .figure-logo img {

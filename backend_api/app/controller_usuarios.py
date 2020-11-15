@@ -2,6 +2,7 @@ from .model import db, Usuario, Estabelecimento
 from flask import jsonify
 
 
+
 class ControllerUsuarios:
 
     def post_usuarios(self, request):

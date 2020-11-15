@@ -1,6 +1,7 @@
 from .model import db, Estabelecimento
 from flask import jsonify
 
+
 class ControllerEstabelecimentos():
 
     def post_estabelecimentos(self, request):
@@ -68,6 +69,7 @@ class ControllerEstabelecimentos():
         return novo_estabelecimento
 
     def _has_estabelecimento(self): 
+        
         if Estabelecimento.query.count() > 0:
             return jsonify(True)
         else:

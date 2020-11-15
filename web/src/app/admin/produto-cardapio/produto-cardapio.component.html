@@ -6,7 +6,7 @@
       </div>
       <div class="col-xs-6 col-sm-1 text-right">
         <a
-          class="btn btn-rounded btn-success"
+          class="btn btn-rounded btn-danger"
           routerLink="./new"
           title="Adicionar Novo Produto"
         >
@@ -19,7 +19,11 @@
     <div class="row" *ngIf="authUserService.getSession().isAdmin">
       <div class="col-12 form-group">
         <label class="control-label">Estabelecimentos</label>
-        <select class="form-control" [(ngModel)]="estabelecimentoSelected" (change)="onChange()">
+        <select
+          class="form-control"
+          [(ngModel)]="estabelecimentoSelected"
+          (change)="onChange()"
+        >
           <option value="0">Todos</option>
           <option *ngFor="let item of listEstabelecimento" [value]="item.id">
             {{ item.nome }}
@@ -59,7 +63,13 @@
     </div>
   </section>
   <footer class="footer-info">
-    <i class="fas fa-utensils"></i> Chefe, até agora você tem
-    {{ listProduto.length }} itens em seu cardápio.
+    <i class="fas fa-utensils"></i>&nbsp;
+
+    <span *ngIf="listProduto.length > 0"
+      >Chefe, até agora você tem {{ listProduto.length }} produto(s) em seu
+      cardápio.</span
+    >
+
+    <span *ngIf="listProduto.length == 0">Chefe, até agora não há itens em seu cardápio.</span>
   </footer>
 </section>
