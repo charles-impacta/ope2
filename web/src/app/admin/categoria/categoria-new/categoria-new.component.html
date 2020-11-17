@@ -5,20 +5,21 @@
     </header>
     <section>
       <div class="row">
-        <div class="col-10 form-group">
+        <div class="col-xs-12 col-sm-10 form-group">
           <label class="control-label">Descrição *</label>
           <input
             type="text"
             class="form-control"
+            maxlength="64"
             [class.has-error]="
               frmFormulario.get('nome').invalid && submited
             "
             formControlName="nome"
-            placeholder="Informe o nome da categoria"
+            placeholder="Informe a descrição da categoria"
           />
         </div>
-        <div class="col-2 form-group">
-          <label class="control-label">Situação</label>
+        <div class="col-xs-12 col-sm-2 form-group">
+          <label class="control-label">Situação *</label>
           <select class="form-control" formControlName="inativo">
             <option [value]="false">Ativo</option>
             <option [value]="true">Inativo</option>

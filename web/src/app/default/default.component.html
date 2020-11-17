@@ -1,10 +1,10 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-red">
   <section class="container-fluid">
     <a class="navbar-brand" href="#">Cardápio na Web</a>
-    <button class="navbar-toggler btn-toggle" type="button">
+    <a class="btn btn-danger pull-right btn-toggle" (click)="onSetAutoContrast()">
       <i class="fas fa-adjust"></i>
-    </button>
-    <a class="btn btn-warning pull-right" routerLink="/login" >Entrar</a>
+    </a>
+    <a class="btn btn-danger btn-cardapio pull-right" routerLink="/login" >Entrar</a>
   </section>
   <div class="collapse navbar-collapse" id="navbarSupportedContent"></div>
 </nav>

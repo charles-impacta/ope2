@@ -9,6 +9,7 @@
           <label class="control-label">Nome *</label>
           <input
             type="text"
+            maxlength="64"
             class="form-control"
             [class.has-error]="
               frmFormulario.get('nome').invalid && submited
@@ -45,7 +46,7 @@
             placeholder="Preço"
           />
         </div>
-        <div class="col-2 form-group">
+        <div class="col-xs-12 col-sm-2 form-group">
           <label class="control-label">Situação *</label>
           <select class="form-control" formControlName="inativo">
             <option [value]="false">Ativo</option>
@@ -56,6 +57,7 @@
           <label class="control-label">Descrição *</label>
           <input
             type="text"
+            maxlength="256"
             class="form-control"
             [class.has-error]="frmFormulario.get('descricao').invalid && submited"
             formControlName="descricao"
@@ -67,6 +69,7 @@
           <label class="control-label">Ingredientes *</label>
           <textarea
           rows="5"
+          maxlength="512"
           class="form-control"
           formControlName="ingredientes"
           [class.has-error]="
@@ -80,21 +83,12 @@
           <textarea
             rows="5"
             class="form-control"
+            maxlength="512"
             formControlName="modo_de_preparo"
             [class.has-error]="
               frmFormulario.get('modo_de_preparo').invalid && submited
             "
           ></textarea>
-          <div
-            class="row"
-            *ngIf="frmFormulario.hasError('invalidConfirm') && submited"
-          >
-            <div class="col-12" style="padding: 8px 5px 5px 15px">
-              <span class="text-danger"
-                ><strong>Confirme a senha corretamente</strong></span
-              >
-            </div>
-          </div>
         </div>
       </div>
     </section>
