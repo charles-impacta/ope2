@@ -1,15 +1,15 @@
-<header class="header-cardapio container-fluid" [class.contrast-adapter]="getContrast()">
+<header class="header-cardapio container-fluid" >
   <span class="title-cardapio"
-    ><i class="fas fa-utensils"></i>Conheça Nossa Variedade de Pratos</span
+    ><i class="fas fa-utensils"></i>Conheça nossa variedade de pratos</span
   >
 </header>
-<section class="container section-main" [class.contrast-adapter]="getContrast()">
+<section class="container section-main">
   <header class="container-group text-center"><span class="container-group-title">{{ descricaoGrupo }}</span></header>
   <article *ngFor="let item of listProduto" class="item-cardapio-container">
     <header>
       <div class="row">
         <div class="col-9 product-name">{{ item.nome }}</div>
-        <div class="col-2 product-price">{{ item.preco | currency: "R$" }}</div>
+        <div class="col-2 product-price">{{ item.preco | currency: "R$ " }}</div>
       </div>
     </header>
     <content class="product-description">{{ item.descricao }}</content>

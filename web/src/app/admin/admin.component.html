@@ -1,7 +1,10 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-red">
   <a class="navbar-brand" routerLink="">Cardápio na Web</a>
-  <button
-    class="navbar-toggler"
+  <a class="btn btn-danger btn-cardapio pull-right btn-toggle" (click)="onSetAutoContrast()">
+    <i class="fas fa-adjust"></i>
+  </a>
+  <a
+    class="btn btn-danger btn-cardapio pull-right btn-toggle"
     type="button"
     data-toggle="collapse"
     data-target="#navbarSupportedContent"
@@ -9,8 +12,8 @@
     aria-expanded="false"
     aria-label="Toggle navigation"
   >
-    <span class="navbar-toggler-icon"></span>
-  </button>
+    <i class="fa fa-bars"></i>
+</a>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">

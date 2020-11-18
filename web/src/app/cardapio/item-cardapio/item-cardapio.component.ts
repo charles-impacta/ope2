@@ -14,7 +14,7 @@ import { ItemCardapioService } from 'src/domain/services/item-cardapio.service';
 export class ItemCardapioComponent extends AppBaseComponent implements OnInit, OnDestroy {
 
   listProduto: ItemCardapio[] = [];
-  descricaoGrupo : string = "";
+  descricaoGrupo : string = "Menu";
   navigationSubscription;
 
   constructor(injector: Injector,
@@ -91,7 +91,7 @@ initialiseInvites() {
     });
 
 
-    this.itemCardapioService.getByCategoria(this.activeRoute.snapshot.paramMap.get("categoria_id")).subscribe((data)=>{
+    this.itemCardapioService.getByCategoriaAtivo(this.activeRoute.snapshot.paramMap.get("categoria_id")).subscribe((data)=>{
       this.listProduto = data;
     },(error)=>{
       this.toastService.error(error);

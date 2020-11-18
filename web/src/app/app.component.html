@@ -1,3 +1,6 @@
-<div class="body" [class.contrast-adapter]="getContrast()">
+<div class="container-contrast">
+  <button class="btn btn-toggle-monitor" (click)="onSetAutoContrast()"><i class="fas fa-adjust"></i></button>
+</div>
+<div class="body" [class.contrast-adapter]="contrast">
   <router-outlet></router-outlet>
 </div>

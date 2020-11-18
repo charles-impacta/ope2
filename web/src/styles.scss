@@ -1,22 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
 @import url("https://fonts.googleapis.com/css2?family=Lato&family=Oswald&family=Roboto&display=swap");
 
-body {
-  height: 100vh;
+.body {
+  min-height: 100vh;
   margin: 0;
-  padding: 0;
+  padding: 0 0 10px 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   background: url("./assets/images/back-ground.jpg") repeat-y;
 }
 
+
 /*Default Style*/
+
+.figure-logo figcaption {
+  padding: 50px 0px;
+}
 
 .home-title-site {
   font-family: "Oleo Script Swash Caps", cursive !important;
   font-size: 95px !important;
   color: #fff;
   text-shadow: 2px 3px #000;
-  margin-top: 100px !important;
+  margin-top: 80px !important;
 }
 
 .title-site {
@@ -66,7 +71,7 @@ body {
 
 .btn-cardapio {
   font-family: "Oleo Script Swash Caps", cursive !important;
-  font-size: 25px;
+  font-size: 1.25em;
 }
 
 .btn-rounded {
@@ -130,13 +135,19 @@ body {
   font-weight: 600 !important;
 }
 
+#btnContrastBar{
+  display: none;
+}
+
 .btn-toggle {
-  padding: 9px 15px;
+  padding: 5px 12px;
   font-size: 1.25rem;
   line-height: 1;
   background-color: transparent;
   border: 1px solid transparent;
   border-radius: 0.25rem;
+  display:none;
+
 }
 
 .navbar.fixed-left {
@@ -245,6 +256,10 @@ body {
   font-size: 17px;
   color: #000 !important;
   display: block;
+}
+
+.body.contrast-adapter{
+  background:none;
 }
 
 .contrast-adapter .product-name,
@@ -384,17 +399,22 @@ body.contrast-adapter {
 
 @media (max-width: 420px) {
 
+  .figure-logo figcaption {
+    padding: 0;
+  }
+
+  #btnContrastBar {
+    display: block !important;
+  }
+
   .header-cardapio {
     margin-top: 49px;
 }
-  .btn-toggle-monitor {
-    display: none !important;
-  }
 
   .home-title-site {
     font-size: 40px !important;
     white-space: nowrap;
-    margin-top: 100px !important;
+    margin-top: 80px !important;
   }
 
   .figure-logo img {
@@ -403,12 +423,19 @@ body.contrast-adapter {
 
   .btn-cardapio {
     font-family: "Oleo Script Swash Caps", cursive !important;
-    font-size: 15px !important;
+    padding: 5px 12px;
+    font-size: 1em;
   }
+
+  .btn-toggle{display:block;}
 
   .section-cadastro h2 {
     font-family: "Oleo Script Swash Caps", cursive !important;
     font-size: 19px;
+  }
+
+  .section-main{
+    width: 95%;
   }
 
   div[vw-access-button] {
@@ -418,6 +445,9 @@ body.contrast-adapter {
   .btn-toggle-monitor {
     display: none;
   }
+
+
+
 
   .header-cardapio-title {
     font-family: "Oleo Script Swash Caps", cursive !important;
@@ -454,4 +484,13 @@ body.contrast-adapter {
   .contrast-adapter .produto-cardapio .product-name {
     color: #000 !important;
   }
+
+  .contrast-adapter .home-title-site {
+
+    color:yellow;
+    font-size: 40px !important;
+    margin-top:10px;
+
+  }
+
 }

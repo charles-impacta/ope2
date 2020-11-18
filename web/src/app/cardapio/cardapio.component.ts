@@ -36,8 +36,4 @@ export class CardapioComponent extends AppBaseComponent implements OnInit {
 
   }
 
-  onSetAutoContrast(){
-    AppBaseComponent.onSetAutoContrast();
-  }
-
 }

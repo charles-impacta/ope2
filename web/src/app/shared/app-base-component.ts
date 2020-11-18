@@ -3,7 +3,7 @@ import { Injector } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { AuthUserService } from 'src/domain/services/auth-user.service';
-
+import * as _ from "lodash";
 export abstract class AppBaseComponent {
 
   frmFormulario: FormGroup;
@@ -12,7 +12,7 @@ export abstract class AppBaseComponent {
   router: Router;
   toastService: ToastrService;
   authUserService: AuthUserService;
-  public static autoContrast = false;
+  public autoContrast = false;
 
   constructor(injector: Injector) {
 
@@ -21,24 +21,33 @@ export abstract class AppBaseComponent {
     this.router = injector.get(Router);
     this.toastService = injector.get(ToastrService);
     this.authUserService = injector.get(AuthUserService);
-
-
-
+    this.onStartAutoContrast();
   }
 
   onExit() {
 
     this.authUserService.closeSession();
+
     this.router.navigate(['/']);
 
   }
 
-  static onSetAutoContrast() {
-    this.autoContrast = !this.autoContrast;
+  onSetAutoContrast() {
+
+      localStorage.setItem("enable-contrast", _.toString(!this.contrast));
   }
 
-   getContrast() : boolean {
-    return AppBaseComponent.autoContrast;
+  onStartAutoContrast() {
+
+    if(localStorage.getItem("enable-contrast") == null){
+
+      localStorage.setItem("enable-contrast","false");
+    }
+
   }
 
+  get contrast() : boolean {
+
+    return JSON.parse(localStorage.getItem("enable-contrast"));
+  }
 }
